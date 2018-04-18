@@ -1,7 +1,7 @@
 const search = (state = {
 	isFetching:false,
 	results:[],
-	offset:0,
+	//offset:0,
 	total:0
 }, action) => {
 	switch (action.type) {
@@ -9,7 +9,7 @@ const search = (state = {
 			return {
 				...state,
 				searchQ:action.searchQ,
-				offset:state.offset + action.offset,
+				//offset:state.offset + action.offset,
 				isFetching:true,
 			}
 		case 'RECEIVE_SEARCH':

@@ -33,7 +33,7 @@ const Styles = StyleSheet.create({
     borderStyle: "solid",
     textAlign: "center",
     marginBottom:5,
-    color:'#ccc'
+    color:'#ccc',
   },
   Text: {
     flex:1,

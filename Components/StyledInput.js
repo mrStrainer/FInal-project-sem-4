@@ -10,6 +10,7 @@ const StyledInput = ({ placeholder = '', phColor = '#9c9c9c', onChangeText, onSu
             placeholderTextColor={phColor}
             onChangeText={onChangeText}
             onSubmitEditing={onSubmitEditing}
+            underlineColorAndroid='transparent'
         />
     )
 }

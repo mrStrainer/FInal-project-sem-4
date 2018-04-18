@@ -3,10 +3,10 @@ import { json, status, createHeader } from './Helpers'
 const REQUEST_SEARCH = 'REQUEST_SEARCH'
 const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
 
-const requestSearch = (searchQ, offset) => ({
+const requestSearch = (searchQ/*, offset*/) => ({
 	type:REQUEST_SEARCH,
 	searchQ,
-	offset
+	//offset
 })
 
 const receiveSearch = results => ({
