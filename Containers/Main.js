@@ -1,6 +1,18 @@
-import React from 'react'
-import { Text } from 'react-native'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { login, logout } from '../Actions/';
+import Main from '../Components/Main';
 
-const Main = () => <Text>Main</Text>
+function mapStateToProps(state) {
+  return {
+  	isLoggedIn:state.auth.isLoggedIn
+  }
+}
 
-export default Main;
+function mapDispachToProps(dispatch) {
+  return bindActionCreators({ login, logout }, dispatch);
+}
+
+const App = connect(mapStateToProps, mapDispachToProps)(Main);
+
+export default App;
