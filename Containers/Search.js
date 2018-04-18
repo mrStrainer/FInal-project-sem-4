@@ -1,19 +1,18 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { searchAlbum } from '../actions/'
+import { searchAlbum } from '../Actions/'
 import Search from '../Components/Search' 
 
 function mapStateToProps(state) {
 	return {
-		login:state.login,
-		currentSearch:state.currentSearch
+		isLoggedIn:state.auth.isLoggedIn,
+		search:state.search
 	}
 }
 
-// function mapDispatchToProps(dispatch) {
-// 	//console.log(actions);
-// 	return bindActionCreators({searchAlbum}, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({searchAlbum}, dispatch);
+}
 
-const SearchContainer = connect(mapStateToProps/*,mapDispatchToProps*/)(Search);
+const SearchContainer = connect(mapStateToProps,mapDispatchToProps)(Search);
 export default SearchContainer;

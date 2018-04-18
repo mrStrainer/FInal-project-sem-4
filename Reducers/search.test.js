@@ -23,6 +23,20 @@ describe('search reducer', () => {
 		})
 	})
 
+	it('should handle REQUEST_SEARCH with searchQ', () => {
+		expect(
+			search(undefined, {
+				type:'REQUEST_SEARCH',
+				searchQ:'text'
+			})
+		).toEqual({
+			isFetching:true,
+			searchQ:'text',
+			results:[],
+			total:0
+		})
+	})
+
 
 	const results = {
 		albums:[{}],

@@ -1,9 +1,9 @@
+export * from './Auth'
+export * from './Search'
+
 export const REQUEST_ALBUM = 'REQUEST_ALBUM'
-export const REQUEST_SEARCH = 'REQUEST_SEARCH'
+
 export const RECEIVE_ALBUM = 'RECEIVE_ALBUM'
-export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
-export const LOGIN = 'LOGIN'
-export const LOGOUT = 'LOGOUT'
 
 export const requestAlbum = albumId => ({
 	type:REQUEST_ALBUM,
@@ -15,24 +15,6 @@ export const receiveAlbum = album => ({
 	album, 
 })
 
-export const requestSearch = searchQ => ({
-	type:REQUEST_SEARCH,
-	searchQ
-})
-
-export const receiveSearch = results => ({
-	type:RECEIVE_SEARCH,
-	results,
-})
-
-export const login = token => ({
-	type: LOGIN,
-	token
-})
-
-export const logout = () => ({
-	type:LOGOUT
-})
 
 const json = response => response.json()
 
@@ -53,38 +35,6 @@ const albumResponse = album => ({
     image:album.images[1]
 })
 
-const searchResponse = results => {
-	const { total, items:responseAlbums  } = results.albums;
-	const albums = responseAlbums.map(album => ({
-		name:album.name,
-		artist:album.artists[0].name,
-		id:album.id,
-		image:album.images[2]
-	}));
-
-	return {
-		total,
-		albums
-	}
-}
-
-export const searchAlbum = (searchQ, token) => (dispatch, getState) => {
-	const { token } = getState().auth; 
-	dispatch(requestSearch(searchQ))
-	return fetch(`https://api.spotify.com/v1/search?q=${searchQ}&type=album&limit=15`, {
-			method: `GET`,
-			headers: {
-				"Accept": "application/json",
-				"Content-Type": "application/json",
-				"Authorization": `Bearer ${token}`
-			}
-		})
-		.then(json)
-		.then(status)
-		.then(searchResponse)
-		.then(results => dispatch(receiveSearch(results)));
-}
-
 const fetchAlbum = (albumId, token) => dispatch => {
 	dispatch(requestAlbum(albumId));
  	return fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
@@ -98,7 +48,8 @@ const fetchAlbum = (albumId, token) => dispatch => {
  		.then(json)
  		.then(status)
  		.then(albumResponse)
- 		.then(album => dispatch(receiveAlbum(album)));
+ 		.then(album => dispatch(receiveAlbum(album)))
+ 		.catch(error => console.log(error))
 }
 
 const shouldFetchAlbum = (state, albumId) => {

@@ -1,10 +1,14 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { StyleSheet, View, Text, TouchableHighlight } from 'react-native'
+import Styles from '../Styles/Main'
+import Login from './Login' 
 
-const Main = ({ isLoggedIn }) => {
-	if(isLoggedIn)
-		return <Text>Logged In</Text>
-	return <Text>Not Logged In</Text>
+const Main = ({ isLoggedIn, login, logout }) => {
+	return (
+		<View style={Styles.center}>
+			<Text>Main</Text>
+		</View>
+    )
 }
 
 export default Main;
