@@ -1,15 +1,15 @@
 import { json, status, createHeader } from './Helpers'
 
-const REQUEST_SEARCH = 'REQUEST_SEARCH'
-const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
+export const REQUEST_SEARCH = 'REQUEST_SEARCH'
+export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
 
-const requestSearch = (searchQ/*, offset*/) => ({
+export const requestSearch = (searchQ/*, offset*/) => ({
 	type:REQUEST_SEARCH,
 	searchQ,
 	//offset
 })
 
-const receiveSearch = results => ({
+export const receiveSearch = results => ({
 	type:RECEIVE_SEARCH,
 	results,
 })

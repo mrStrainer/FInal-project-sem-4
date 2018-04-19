@@ -73,4 +73,4 @@ export default class Search extends React.Component {
 			</View>
 		);
 	}
-
+}

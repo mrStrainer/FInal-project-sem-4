@@ -4,7 +4,7 @@ import SpotifyConfig from "../Config/Spotify/";
 const LOGIN = 'LOGIN'
 const LOGOUT = 'LOGOUT'
 
-const login = token => ({
+export const login = token => ({
 	type: LOGIN,
 	token
 })
