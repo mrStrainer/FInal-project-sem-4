@@ -23,9 +23,9 @@ export default class App extends React.Component {
         return (
             <Provider store={store}>
                 <NativeRouter>
-                    <View style={{flex:1, backgroundColor:'#181818'}}>
+                    <View style={Styles.Container}>
                         <NavBar/>
-                        <ScrollView style={Styles.container}>
+                        <ScrollView style={Styles.Container}>
                             <Route path="/" component={Search}/>
                             <Route path="/search" component={Search}/>
                         </ScrollView>

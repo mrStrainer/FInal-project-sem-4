@@ -15,7 +15,10 @@ export const receiveSearch = results => ({
 })
 
 const searchResponse = results => {
+	//TODO
+	//results for all types
 	const { total, items:responseAlbums  } = results.albums;
+
 	const albums = responseAlbums.map(album => ({
 		name:album.name,
 		artist:album.artists[0].name,
@@ -29,10 +32,10 @@ const searchResponse = results => {
 	}
 }
 //type = 'album,track,artist',
-export const searchAlbum = (searchQ, offset = 0) => (dispatch, getState) => {
+export const searchAlbum = (searchQ) => (dispatch, getState) => {
 	const { token } = getState().auth; 
-	dispatch(requestSearch(searchQ, offset))
-	return fetch(`https://api.spotify.com/v1/search?q=${searchQ}&type=album&limit=15&offset=${offset}`, createHeader('GET', token))
+	dispatch(requestSearch(searchQ))
+	return fetch(`https://api.spotify.com/v1/search?q=${searchQ}&type=${encodeURIComponent(`album,artist,track`)}&limit=15`, createHeader('GET', token))
 		.then(json)
 		.then(status)
 		.then(searchResponse)
