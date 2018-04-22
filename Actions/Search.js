@@ -14,22 +14,69 @@ export const receiveSearch = results => ({
 	results,
 })
 
-const searchResponse = results => {
-	//TODO
-	//results for all types
-	const { total, items:responseAlbums  } = results.albums;
-
-	const albums = responseAlbums.map(album => ({
+const albumResponse = responseAlbums => {
+	const { items } = responseAlbums;
+	const albums = items.map(album => ({
 		name:album.name,
 		artist:album.artists[0].name,
 		id:album.id,
 		image:album.images[2]
 	}));
 
-	return {
-		total,
-		albums
+	return albums;
+}
+const artistResponse = responseArtists => {
+	const { items } = responseArtists;
+	const artists = items.map(artist => ({
+		name: artist.name,
+		id: artist.id,
+		image:artist.images[2]
+	}));
+	return artists;
+}
+const trackResponse = responseTracks => {
+	const { items } = responseTracks;
+	const tracks = items.map(track => ({
+		name:track.name,
+		artists:track.artists.map(artist => artist.name),
+		id:track.id,
+		album:track.album.name,
+
+	}));
+	return tracks;
+}
+
+
+const searchResponse = results => {
+	const res = {}
+	for (prop of Object.keys(results)) {
+		switch(prop) {
+			case 'albums':
+				res[prop] = {
+					total:results[prop].total,
+					offset:results[prop].offset,
+					items: albumResponse(results[prop])
+				}
+				break;
+			case 'artists':
+				res[prop] = {
+					total:results[prop].total,
+					offset:results[prop].offset,
+					items: artistResponse(results[prop])
+				}
+				break;
+			case 'tracks':
+				res[prop] = {
+					total:results[prop].total,
+					offset:results[prop].offset,
+					items: trackResponse(results[prop])
+				}
+				break;
+			default:
+				console.log('eh');
+		}		
 	}
+	return res;
 }
 //type = 'album,track,artist',
 export const searchAlbum = (searchQ) => (dispatch, getState) => {
