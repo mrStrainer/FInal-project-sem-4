@@ -14,7 +14,7 @@ export const receiveSearch = results => ({
 	results,
 })
 
-const albumResponse = responseAlbums => {
+export const albumResponse = responseAlbums => {
 	const { items } = responseAlbums;
 	const albums = items.map(album => ({
 		name:album.name,
@@ -25,7 +25,7 @@ const albumResponse = responseAlbums => {
 
 	return albums;
 }
-const artistResponse = responseArtists => {
+export const artistResponse = responseArtists => {
 	const { items } = responseArtists;
 	const artists = items.map(artist => ({
 		name: artist.name,
@@ -34,7 +34,7 @@ const artistResponse = responseArtists => {
 	}));
 	return artists;
 }
-const trackResponse = responseTracks => {
+export const trackResponse = responseTracks => {
 	const { items } = responseTracks;
 	const tracks = items.map(track => ({
 		name:track.name,
@@ -47,7 +47,7 @@ const trackResponse = responseTracks => {
 }
 
 
-const searchResponse = results => {
+export const searchResponse = results => {
 	const res = {}
 	for (prop of Object.keys(results)) {
 		switch(prop) {
