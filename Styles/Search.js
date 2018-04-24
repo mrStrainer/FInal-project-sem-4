@@ -17,6 +17,30 @@ const Styles = StyleSheet.create({
 	CenterView: {
 		alignItems:'center', 
 		padding:5,
+	},
+	TypeMenu:{
+		flexDirection:'row',
+        justifyContent:'space-between',
+        backgroundColor:'#282828',
+        marginBottom:7,
+        alignItems:'center',
+        shadowColor:'#000',
+        shadowOffset: { 
+            width:0, 
+            height:2.1
+        },
+        shadowOpacity:0.2,
+        elevation:2,
+	},
+	Selected: {
+		padding:5,
+		color:'#ccc',
+		backgroundColor:'#181818'
+	},
+	NotSelected: {
+		padding:5,
+		color:'#000',
+		backgroundColor:'#282828'
 	}
 })
 
