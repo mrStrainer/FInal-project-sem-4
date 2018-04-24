@@ -20,18 +20,14 @@ const SearchInput = ({ onChangeText, onSubmitEditing }) => {
 // check for empty input
 // check for auth
 // inputvalidation
-// 	offsetReset
-// 	serachQreset
-// Search for artist, track
+
 // tabs
 // 	tracks
 // 	artists
 // 	albums
-// LoadMore
+//scroll on loadmore
+
 // 	checkTotal
-// 	track
-// 	artist
-// 	album
 // onclicks
 
 // save token
@@ -78,11 +74,11 @@ const SearchResults = ({ albums, artists, tracks, searchQ, searchMore }) => {
 }
 const SearchResultsWithSpinner = withSpinner(SearchResults);
 const SearchResultsWithCheckAndSpinner = withResults(SearchResultsWithSpinner);
+
 export default class Search extends React.Component {
 	state = {
 		searchQ:'',
 	}
-	//{results.length > 0 && <StyledButton onPress={() => searchAlbum(searchQ, offset+15)} style={{width:'80%'}}text='Load More'/> }
 // <ScrollView style={Styles.Results} ref={ref => this.scrollView = ref} onContentSizeChange={(contentWidth, contentHeight)=>{this.scrollView.scrollToEnd({animated: true})} }>
 	render() {
 		const { searchNew, searchMore } = this.props;

@@ -87,7 +87,7 @@ export const searchResponse = results => {
 				}
 				break;
 			default:
-				console.log('eh');
+				return res;
 		}		
 	}
 	return res;
@@ -95,9 +95,9 @@ export const searchResponse = results => {
 
 export const searchMore = searchType => (dispatch, getState) => {
 	const { token } = getState().auth;
-	const { searchQ } = getState().search;
-	const { total, offset } = getState().search.results[`${searchType}s`];
-	console.log(`searchMore:${total} - ${offset}`)
+	const { searchQ, results:{ [`${searchType}s`]:{ total, offset } } } = getState().search
+	//TODO
+	// check total < offset => hide button
 	dispatch(requestMoreSearch(searchType))
 	return fetch(`https://api.spotify.com/v1/search?q=${searchQ}&type=${searchType}&limit=15&offset=${offset+15}`, createHeader('GET', token))
 		.then(json)
@@ -107,7 +107,6 @@ export const searchMore = searchType => (dispatch, getState) => {
 		.catch(error => console.log(error))
 }
 
-//type = 'album,track,artist',
 export const searchNew = (searchQ) => (dispatch, getState) => {
 	const { token } = getState().auth; 
 	dispatch(requestSearch(searchQ))
