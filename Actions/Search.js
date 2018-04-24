@@ -2,6 +2,8 @@ import { json, status, createHeader } from './Helpers'
 
 export const REQUEST_SEARCH = 'REQUEST_SEARCH'
 export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
+export const REQUEST_MORE_SEARCH = 'REQUEST_MORE_SEARCH'
+export const RECEIVE_MORE_SEARCH = 'RECEIVE_MORE_SEARCH'
 
 export const requestSearch = (searchQ/*, offset*/) => ({
 	type:REQUEST_SEARCH,
@@ -12,6 +14,17 @@ export const requestSearch = (searchQ/*, offset*/) => ({
 export const receiveSearch = results => ({
 	type:RECEIVE_SEARCH,
 	results,
+})
+
+export const requestMoreSearch = searchType => ({
+	type:REQUEST_MORE_SEARCH,
+	searchType
+})
+
+export const receiveMoreSearch = (searchType,results) => ({
+	type:RECEIVE_MORE_SEARCH,
+	searchType,
+	results
 })
 
 export const albumResponse = responseAlbums => {
@@ -25,6 +38,7 @@ export const albumResponse = responseAlbums => {
 
 	return albums;
 }
+
 export const artistResponse = responseArtists => {
 	const { items } = responseArtists;
 	const artists = items.map(artist => ({
@@ -34,6 +48,7 @@ export const artistResponse = responseArtists => {
 	}));
 	return artists;
 }
+
 export const trackResponse = responseTracks => {
 	const { items } = responseTracks;
 	const tracks = items.map(track => ({
@@ -45,7 +60,6 @@ export const trackResponse = responseTracks => {
 	}));
 	return tracks;
 }
-
 
 export const searchResponse = results => {
 	const res = {}
@@ -78,6 +92,22 @@ export const searchResponse = results => {
 	}
 	return res;
 }
+
+export const searchMore = searchType => (dispatch, getState) => {
+	const { token } = getState().auth;
+	let { searchQ, results:{ [searchType]:{ total, offset } } } = getState().search;
+	// if (offset+15 > total) {
+	// 	offset =
+	// }
+	dispatch(requestMoreSearch(searchType))
+	return fetch(`https://api.spotify.com/v1/search?q=${searchQ}&type=${searchType}&limit=15&offset=${offset+15}`, createHeader('GET', token))
+		.then(json)
+		.then(status)
+		.then(searchResponse)
+		.then(results => dispatch(receiveMoreSearch(searchType,results)))
+		.catch(error => console.log(error))
+}
+
 //type = 'album,track,artist',
 export const searchAlbum = (searchQ) => (dispatch, getState) => {
 	const { token } = getState().auth; 

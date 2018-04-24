@@ -6,8 +6,7 @@ describe('search reducer', () => {
 			search(undefined,{})
 		).toEqual({
 			isFetching:false,
-			results:[],
-			total:0
+			results:{}
 		})
 	})
 
@@ -18,8 +17,7 @@ describe('search reducer', () => {
 			})
 		).toEqual({
 			isFetching:true,
-			results:[],
-			total:0
+			results:{}
 		})
 	})
 
@@ -32,15 +30,15 @@ describe('search reducer', () => {
 		).toEqual({
 			isFetching:true,
 			searchQ:'text',
-			results:[],
-			total:0
+			results:{}
 		})
 	})
 
 
 	const results = {
-		albums:[{}],
-		total:1
+		albums:{},
+		artists:{},
+		tracks:{},
 	}
 
 	it('should handle RECEIVE_SEARCH', () => {
@@ -53,8 +51,84 @@ describe('search reducer', () => {
 			})
 		).toEqual({
 			isFetching:false,
-			results:[{}],
-			total:1
+			results:{
+				albums:{},
+				artists:{},
+				tracks:{}
+			}
+		})
+	})
+
+	it('should handle RECEIVE_MORE_SEARCH', () => {
+		expect(
+			search({
+				isFetching:false,
+				results:{
+					albums:{
+						total:1,
+						offset:0,
+						items:[]
+					},
+					artists:{
+						total:0,
+						offset:0,
+						items:[]
+					},
+					tracks:{
+						total:0,
+						offset:0,
+						items:[]						
+					}
+				}
+			},{
+				type:'RECEIVE_MORE_SEARCH',
+				searchType:'albums',
+				results:{
+					albums:{
+						total:1,
+						offset:0,
+						items:[{
+							name:"Black Holes And Revelations",
+							artist:"Muse",
+							id:"0lw68yx3MhKflWFqCsGkIs",
+							image:{
+					            "height": 64,
+					            "url": "https://i.scdn.co/image/81a3f82578dc938c53efdcb405f6a3d3ebbf009f",
+					            "width": 64
+					        }
+						}]
+					}
+				}
+			})
+		).toEqual({
+			isFetching:false,
+			isFetchingMore:false,
+			results:{
+				albums:{
+					total:1,
+					offset:0,
+					items:[{
+						name:"Black Holes And Revelations",
+						artist:"Muse",
+						id:"0lw68yx3MhKflWFqCsGkIs",
+						image:{
+				            "height": 64,
+				            "url": "https://i.scdn.co/image/81a3f82578dc938c53efdcb405f6a3d3ebbf009f",
+				            "width": 64
+				        }
+					}]
+				},
+				artists:{
+					total:0,
+					offset:0,
+					items:[]
+				},
+				tracks:{
+					total:0,
+					offset:0,
+					items:[]
+				}
+			}
 		})
 	})
 })

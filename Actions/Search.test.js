@@ -23,6 +23,22 @@ describe('search actions', () => {
 			}
 		})
 	})
+
+	it('requestMoreSearch should create REQUEST_MORE_SEARCH action', () => {
+		expect(actions.requestMoreSearch('type')).toEqual({
+			type:'REQUEST_MORE_SEARCH',
+			searchType:'type'
+		})
+	})
+
+	it('receiveMoreSearch should create RECEIVE_MORE_SEARCH action', () => {
+		expect(actions.receiveMoreSearch('type')).toEqual({
+			type:'RECEIVE_MORE_SEARCH',
+			searchType:'type'
+		})
+	})
+
+
 	it('formats album data correctly', () => {
 		expect(
 			actions.albumResponse(exampleResponse.albums)
@@ -96,7 +112,7 @@ describe('search actions', () => {
 		])
 	})
 
-		it('formats track data correctly', () => {
+	it('formats track data correctly', () => {
 		expect(
 			actions.trackResponse(exampleResponse.tracks)
 		).toEqual([

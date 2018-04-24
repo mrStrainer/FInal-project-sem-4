@@ -1,26 +1,39 @@
+import searchMore from './searchMore'
+
 const search = (state = {
 	isFetching:false,
-	results:[],
-	//offset:0,
-	total:0
+	results:{}
 }, action) => {
 	switch (action.type) {
 		case 'REQUEST_SEARCH':
 			return {
 				...state,
 				searchQ:action.searchQ,
-				//offset:state.offset + action.offset,
 				isFetching:true,
 			}
 		case 'RECEIVE_SEARCH':
 			return {
 				...state,
 				isFetching:false,
-				results:action.results.albums,
-				total:action.results.total
+				results:action.results,
+			}
+		case 'REQUEST_MORE_SEARCH':
+			return {
+				...state,
+				isFetchingMore:true,
+			}
+		case 'RECEIVE_MORE_SEARCH': 
+			return {
+				...state,
+				isFetchingMore:false,
+				results:{
+					...state.results,
+					[action.searchType]:searchMore(state.results[action.searchType], action),
+				}
 			}
 		default:
 			return state;
 	}
 }
+
 export default search;
