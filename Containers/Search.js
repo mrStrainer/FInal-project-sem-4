@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { searchAlbum } from '../Actions/'
+import { searchNew, searchMore } from '../Actions/'
 import Search from '../Components/Search' 
 
 function mapStateToProps(state) {
@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({searchAlbum}, dispatch);
+	return bindActionCreators({searchNew, searchMore}, dispatch);
 }
 
 const SearchContainer = connect(mapStateToProps,mapDispatchToProps)(Search);

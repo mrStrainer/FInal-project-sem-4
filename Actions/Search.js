@@ -109,7 +109,7 @@ export const searchMore = searchType => (dispatch, getState) => {
 }
 
 //type = 'album,track,artist',
-export const searchAlbum = (searchQ) => (dispatch, getState) => {
+export const searchNew = (searchQ) => (dispatch, getState) => {
 	const { token } = getState().auth; 
 	dispatch(requestSearch(searchQ))
 	return fetch(`https://api.spotify.com/v1/search?q=${searchQ}&type=${encodeURIComponent(`album,artist,track`)}&limit=15`, createHeader('GET', token))

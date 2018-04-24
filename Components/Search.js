@@ -1,10 +1,10 @@
 import React from 'react'
-import { StyleSheet, View, Text, ActivityIndicator } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import SearchItem from './SearchItem'
 import StyledButton from './StyledButton'
 import StyledInput from './StyledInput'
 import Styles from '../Styles/Search'
-
+import withSpinner from './withSpinnerHOC'
 const SearchInput = ({ onChangeText, onSubmitEditing }) => { 
 	return (
   		<View style={Styles.CenterView}> 
@@ -37,18 +37,16 @@ const SearchInput = ({ onChangeText, onSubmitEditing }) => {
 // save token
 // load token
 // expireCheck
-const withSpinner = (Component) => ({ isFetching, ...others }) =>
-  isFetching
-    ? <ActivityIndicator />
-    : <Component { ...others } />
 
-const SearchResults = ({ results, total, searchQ }) => {
-	if (results.length > 0) 
-		return results.map(
-			(album,i) => <SearchItem key={album.id} id={album.id} url={album.image.url} name={album.name} artist={album.artist} last={i === results.length-1 ? true : false}/>
-		)
-	if (total === 0  && searchQ) 
-		return <Text style={Styles.Text}>Couldn't find {searchQ}</Text>
+
+const SearchResults = ({ results, searchQ }) => {
+	const { albums } = results;
+	// if (albums.items.length > 0) 
+	// 	return albums.map(
+	// 		(album,i) => <SearchItem key={album.id} id={album.id} url={album.image.url} name={album.name} artist={album.artist} last={i === albums.length-1 ? true : false}/>
+	// 	)
+	// if (total === 0  && searchQ) 
+	// 	return <Text style={Styles.Text}>Couldn't find {searchQ}</Text>
 
 	return <Text style={Styles.Text}>Search for something</Text>
 }
@@ -61,11 +59,11 @@ export default class Search extends React.Component {
 	//{results.length > 0 && <StyledButton onPress={() => searchAlbum(searchQ, offset+15)} style={{width:'80%'}}text='Load More'/> }
 
 	render() {
-		const { searchAlbum } = this.props;
+		const { search } = this.props;
 
 		return (
 			<View style={Styles.componentContainer}>
-				<SearchInput value={this.state.searchQ}onChangeText={(text) => this.setState({searchQ:text})} onSubmitEditing={() => searchAlbum(this.state.searchQ)}/>
+				<SearchInput value={this.state.searchQ} onChangeText={(text) => this.setState({searchQ:text})} onSubmitEditing={() => searchNew(this.state.searchQ)}/>
 				
 				<View style={Styles.Results}>
 					<SearchResultsWithSpinner {...this.props.search}/>
