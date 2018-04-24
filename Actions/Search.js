@@ -95,10 +95,9 @@ export const searchResponse = results => {
 
 export const searchMore = searchType => (dispatch, getState) => {
 	const { token } = getState().auth;
-	let { searchQ, results:{ [searchType]:{ total, offset } } } = getState().search;
-	// if (offset+15 > total) {
-	// 	offset =
-	// }
+	const { searchQ } = getState().search;
+	const { total, offset } = getState().search.results[`${searchType}s`];
+	console.log(`searchMore:${total} - ${offset}`)
 	dispatch(requestMoreSearch(searchType))
 	return fetch(`https://api.spotify.com/v1/search?q=${searchQ}&type=${searchType}&limit=15&offset=${offset+15}`, createHeader('GET', token))
 		.then(json)

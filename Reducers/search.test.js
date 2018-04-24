@@ -82,7 +82,7 @@ describe('search reducer', () => {
 				}
 			},{
 				type:'RECEIVE_MORE_SEARCH',
-				searchType:'albums',
+				searchType:'album',
 				results:{
 					albums:{
 						total:1,

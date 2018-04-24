@@ -17,6 +17,7 @@ const Styles = StyleSheet.create({
 		padding:5,
 		paddingLeft:0,
 		margin:0,
+		marginBottom:10,
 		flexDirection:'row',
 		height:64,
 		alignItems:'center'

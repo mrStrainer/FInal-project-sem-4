@@ -25,16 +25,10 @@ export default class App extends React.Component {
                 <NativeRouter>
                     <View style={Styles.Container}>
                         <NavBar/>
-                        <ScrollView 
-                            style={Styles.Container} 
-                            ref={ref => this.scrollView = ref}
-                            onContentSizeChange={
-                                (contentWidth, contentHeight)=>{        
-                                    this.scrollView.scrollToEnd({animated: true});
-                            }}>
+                        <View style={Styles.Container}>
                             <Route path="/" component={Search}/>
                             <Route path="/search" component={Search}/>
-                        </ScrollView>
+                        </View>
                     </View>
                 </NativeRouter>
             </Provider>
