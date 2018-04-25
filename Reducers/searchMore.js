@@ -4,10 +4,10 @@ const searchMore = (state = {}, action) => {
 		case 'RECEIVE_MORE_SEARCH': 
 			return {
 				...state,
-				offset:action.results[`${action.searchType}s`].offset,
+				offset:action.results[action.searchType].offset,
 				items:[
 					...state.items, 
-					...action.results[`${action.searchType}s`].items
+					...action.results[action.searchType].items
 				]
 			}
 		default:

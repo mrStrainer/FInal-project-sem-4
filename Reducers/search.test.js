@@ -34,7 +34,6 @@ describe('search reducer', () => {
 		})
 	})
 
-
 	const results = {
 		albums:{},
 		artists:{},
@@ -82,7 +81,7 @@ describe('search reducer', () => {
 				}
 			},{
 				type:'RECEIVE_MORE_SEARCH',
-				searchType:'album',
+				searchType:'albums',
 				results:{
 					albums:{
 						total:1,
@@ -129,6 +128,30 @@ describe('search reducer', () => {
 					items:[]
 				}
 			}
+		})
+	})
+
+	it('should handle REQUEST_MORE_SEARCH', () => {
+		expect(
+			search(undefined, {
+				type:'REQUEST_MORE_SEARCH',
+				searchType:'albums'
+			})
+		).toEqual({
+			isFetching:false,
+			isFetchingMore:true,
+			results:{}
+		})
+	})
+	it('should handle RECEIVE_NO_RESULT', () => {
+		expect(
+			search(undefined,{
+				type:'RECEIVE_NO_RESULT'
+			})
+		).toEqual({
+			isFetching:false,
+			isFetchingMore:false,
+			results:{}
 		})
 	})
 })

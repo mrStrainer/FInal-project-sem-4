@@ -28,7 +28,7 @@ const search = (state = {
 				isFetchingMore:false,
 				results:{
 					...state.results,
-					[`${action.searchType}s`]:searchMore(state.results[`${action.searchType}s`], action),
+					[action.searchType]:searchMore(state.results[action.searchType], action),
 				}
 			}
 		case 'RECEIVE_NO_RESULT':

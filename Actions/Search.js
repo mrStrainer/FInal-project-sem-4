@@ -99,14 +99,15 @@ export const searchResponse = results => {
 
 export const searchMore = searchType => (dispatch, getState) => {
 	const { token } = getState().auth;
-	const { searchQ, results:{ [`${searchType}s`]:{ total, offset } } } = getState().search
+	const { searchQ, results:{ [searchType]:{ total, offset } } } = getState().search
 	//TODO
 	// check total < offset => hide button
 	dispatch(requestMoreSearch(searchType))
 	if (offset > total) {
 		return dispatch(receiveNoResult());
 	}
-	return fetch(`https://api.spotify.com/v1/search?q=${searchQ}&type=${searchType}&limit=15&offset=${offset+15}`, createHeader('GET', token))
+	const type = searchType.slice(0, -1);
+	return fetch(`https://api.spotify.com/v1/search?q=${searchQ}&type=${type}&limit=15&offset=${offset+15}`, createHeader('GET', token))
 		.then(json)
 		.then(status)
 		.then(searchResponse)

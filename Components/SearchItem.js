@@ -4,7 +4,7 @@ import { Link } from 'react-router-native';
 import Styles from '../Styles/SearchItem';
 import Placeholder from './Resources/none.png'
 
-const SingleAlbum = ({ id, name, artist, image, last}) => {
+export const SingleAlbum = ({ id, name, artist, image, last}) => {
 	let source = Placeholder;
 	if (image)
 		source = { uri : image.url };
@@ -49,11 +49,11 @@ const SingleTrack = ({ id, name, artists, album, last }) => {
 }
 const SearchItem = ({ type, ...props}) => {
 	switch(type) {
-		case 'album':
+		case 'albums':
 			return <SingleAlbum {...props}/>
-		case 'artist':
+		case 'artists':
 			return <SingleArtist {...props}/>
-		case 'track':
+		case 'tracks':
 			return <SingleTrack {...props}/>
 		default:
 			return <Text> No results </Text>;
