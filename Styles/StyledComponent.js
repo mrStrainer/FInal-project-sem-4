@@ -20,9 +20,9 @@ const Styles = StyleSheet.create({
     borderRadius: 5, 
     justifyContent:'center',
     alignItems:'center',
-    padding:3,
-    paddingLeft:5,
-    paddingRight:5,
+    padding:5,
+    paddingLeft:13,
+    paddingRight:13,
   },
   Input: {
     width: '95%',

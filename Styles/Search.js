@@ -14,34 +14,51 @@ const Styles = StyleSheet.create({
 	Text: {
 		color:'#ccc',
 	},
-	CenterView: {
+	SearchBar: {
+		backgroundColor:'#282828',
 		alignItems:'center', 
 		padding:5,
 	},
 	TypeMenu:{
+		height:40,
 		flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent:'space-around',
         backgroundColor:'#282828',
-        marginBottom:7,
-        alignItems:'center',
-        shadowColor:'#000',
+        marginBottom:5,
+        shadowColor:'#181818',
         shadowOffset: { 
-            width:0, 
-            height:2.1
+           width:0, 
+           height:5.1
         },
         shadowOpacity:0.2,
         elevation:2,
 	},
 	Selected: {
-		padding:5,
-		color:'#ccc',
-		backgroundColor:'#181818'
+		height:40,
+		width:'33%',
+		borderBottomColor:'#181818',
+		borderBottomWidth:3,
+		alignItems:'center',
+		//width:115,
+		padding:7,
+		paddingTop:10,
+		backgroundColor:'#282828'
 	},
 	NotSelected: {
-		padding:5,
-		color:'#000',
+		height:40,
+		width:'33%',
+		borderBottomColor:'#282828',
+		borderBottomWidth:3,
+		//width:115,
+		alignItems:'center',
+		padding:7,
+		paddingTop:10,
 		backgroundColor:'#282828'
-	}
+	},
+	CenterView: {
+		alignItems:'center', 
+		padding:5,
+	},
 })
 
 export default Styles;
