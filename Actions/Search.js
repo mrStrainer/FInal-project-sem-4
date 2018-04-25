@@ -4,6 +4,7 @@ export const REQUEST_SEARCH = 'REQUEST_SEARCH'
 export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
 export const REQUEST_MORE_SEARCH = 'REQUEST_MORE_SEARCH'
 export const RECEIVE_MORE_SEARCH = 'RECEIVE_MORE_SEARCH'
+export const RECEIVE_NO_RESULT = 'RECEIVE_NO_RESULT'
 
 export const requestSearch = (searchQ/*, offset*/) => ({
 	type:REQUEST_SEARCH,
@@ -25,6 +26,9 @@ export const receiveMoreSearch = (searchType,results) => ({
 	type:RECEIVE_MORE_SEARCH,
 	searchType,
 	results
+})
+export const receiveNoResult = () => ({
+	type:RECEIVE_NO_RESULT,
 })
 
 export const albumResponse = responseAlbums => {
@@ -99,6 +103,9 @@ export const searchMore = searchType => (dispatch, getState) => {
 	//TODO
 	// check total < offset => hide button
 	dispatch(requestMoreSearch(searchType))
+	if (offset > total) {
+		return dispatch(receiveNoResult());
+	}
 	return fetch(`https://api.spotify.com/v1/search?q=${searchQ}&type=${searchType}&limit=15&offset=${offset+15}`, createHeader('GET', token))
 		.then(json)
 		.then(status)

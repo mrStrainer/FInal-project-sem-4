@@ -3,7 +3,8 @@ import { Constants } from 'expo';
 
 const Styles = StyleSheet.create({
     nav: {
-        paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight,
+        paddingTop: Platform.OS === 'ios' ? 5 : Constants.statusBarHeight+5,
+        paddingBottom:5,
         flexDirection:'row',
         justifyContent:'space-between',
         backgroundColor:'#282828',

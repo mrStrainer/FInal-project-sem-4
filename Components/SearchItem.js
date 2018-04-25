@@ -4,10 +4,13 @@ import { Link } from 'react-router-native';
 import Styles from '../Styles/SearchItem';
 import Placeholder from './Resources/none.png'
 
-const SingleAlbum = ({ id, name, artist, url, last}) => {
+const SingleAlbum = ({ id, name, artist, image, last}) => {
+	let source = Placeholder;
+	if (image)
+		source = { uri : image.url };
 	return (
 		<View style={last ? Styles.searchItemNoBorder : Styles.searchItem}>
-		<Image source={{ uri: url }} style={Styles.albumImg}/>
+		<Image source={source} style={Styles.albumImg}/>
 			<Link to={`album/${id}`}>
 				<View style={{width:285}}>
 					<Text style={Styles.albumTitle} numberOfLines={1} ellipsizeMode='tail'>{name}</Text>

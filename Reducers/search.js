@@ -31,6 +31,11 @@ const search = (state = {
 					[`${action.searchType}s`]:searchMore(state.results[`${action.searchType}s`], action),
 				}
 			}
+		case 'RECEIVE_NO_RESULT':
+			return {
+				...state,
+				isFetchingMore:false
+			}
 		default:
 			return state;
 	}
