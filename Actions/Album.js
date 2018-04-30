@@ -49,7 +49,7 @@ const shouldFetchAlbum = (state, albumId) => {
 	return true;
 }
 
-export const fetchAlbumIfNeeded = (albumId = '67smHJOf5YlFwad6dAlppm') => (dispatch, getState) => {
+export const fetchAlbumIfNeeded = (albumId) => (dispatch, getState) => {
 	if (shouldFetchAlbum(getState(), albumId)){
 		return dispatch(fetchAlbum(albumId, getState().auth.token));
 	}

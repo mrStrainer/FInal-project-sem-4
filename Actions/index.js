@@ -1,3 +1,5 @@
 export * from './Auth'
 export * from './Search'
 export * from './Album'
+export * from './Playlist'
+export * from './Profile'

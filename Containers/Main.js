@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { login, logout } from '../Actions/';
+import { runAuthentication, logout } from '../Actions/';
 import Main from '../Components/Main';
 
 function mapStateToProps(state) {
@@ -10,7 +10,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispachToProps(dispatch) {
-  return bindActionCreators({ login, logout }, dispatch);
+  return bindActionCreators({ runAuthentication, logout }, dispatch);
 }
 
 const App = connect(mapStateToProps, mapDispachToProps)(Main);

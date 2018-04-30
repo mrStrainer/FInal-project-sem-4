@@ -4,7 +4,7 @@ import { Link } from 'react-router-native';
 import Styles from '../Styles/Main'
 import Login from './Login' 
 
-const Main = ({ isLoggedIn, runAuthentication, logout }) => {
+const Profile = ({ isLoggedIn, runAuthentication, logout }) => {
 	return (
 		<View style={Styles.center}>
 			<Link to='/search/'><Text style={Styles.navText}>Search</Text></Link>
@@ -15,4 +15,4 @@ const Main = ({ isLoggedIn, runAuthentication, logout }) => {
     )
 }
 
-export default Main;
+export default Profile;

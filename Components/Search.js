@@ -33,13 +33,13 @@ const SearchInput = ({ onChangeText, onSubmitEditing }) => {
 const TypeMenu = ({ selected = 0 }) => {
 	return (
 		<View style={Styles.TypeMenu}>
-			<Link to='/'style={selected === 0? Styles.Selected : Styles.NotSelected}>
+			<Link to='/search/'style={selected === 0? Styles.Selected : Styles.NotSelected}>
 				<Text style={Styles.Text}>Albums</Text>
 			</Link>
-			<Link to='/artists' style={selected === 1? Styles.Selected : Styles.NotSelected}>
+			<Link to='/search/artists' style={selected === 1? Styles.Selected : Styles.NotSelected}>
 				<Text style={Styles.Text}>Artists</Text>
 			</Link>
-			<Link to='/tracks' style={selected === 2? Styles.Selected : Styles.NotSelected}>
+			<Link to='/search/tracks' style={selected === 2? Styles.Selected : Styles.NotSelected}>
 				<Text style={Styles.Text}>Tracks</Text>
 			</Link>
 		</View>
@@ -48,13 +48,13 @@ const TypeMenu = ({ selected = 0 }) => {
 
 const typeSelect = [
 	{
-		path:'/',
+		path:'/search/',
 		type:'albums'
 	},{
-		path:'/artists',
+		path:'/search/artists',
 		type:'artists'
 	},{
-		path:'/tracks',
+		path:'/search/tracks',
 		type:'tracks'
 	},
 ]

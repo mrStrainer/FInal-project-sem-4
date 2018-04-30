@@ -11,7 +11,7 @@ export const SingleAlbum = ({ id, name, artist, image, last}) => {
 	return (
 		<View style={last ? Styles.searchItemNoBorder : Styles.searchItem}>
 		<Image source={source} style={Styles.albumImg}/>
-			<Link to={`album/${id}`}>
+			<Link to={`/album/${id}`}>
 				<View style={{width:285}}>
 					<Text style={Styles.albumTitle} numberOfLines={1} ellipsizeMode='tail'>{name}</Text>
 					<Text style={Styles.albumArtist} ellipsizeMode='tail'>{artist}</Text>
@@ -27,7 +27,7 @@ const SingleArtist= ({ id, name, image, last }) => {
 	return (
 		<View style={last ? Styles.searchItemNoBorder : Styles.searchItem}>
 		<Image source={source} style={Styles.albumImg}/>
-			<Link to={`album/${id}`}>
+			<Link to={`/album/${id}`}>
 				<View style={{width:285}}>
 					<Text style={Styles.albumTitle} numberOfLines={1} ellipsizeMode='tail'>{name}</Text>
 				</View>
@@ -38,7 +38,7 @@ const SingleArtist= ({ id, name, image, last }) => {
 const SingleTrack = ({ id, name, artists, album, last }) => {
 	return (
 		<View style={last ? Styles.searchItemNoBorder : Styles.searchItem}>
-			<Link to={`album/${id}`}>
+			<Link to={`/album/${id}`}>
 				<View style={{width:285}}>
 					<Text style={Styles.albumTitle} numberOfLines={1} ellipsizeMode='tail'>{name}</Text>
 					<Text style={Styles.albumArtist} ellipsizeMode='tail'>{artists}</Text>
