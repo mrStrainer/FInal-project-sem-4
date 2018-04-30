@@ -33,7 +33,7 @@ class SearchResults extends React.Component {
 			<FlatList 
 				style={Styles.Results}
 				ref={(ref) => this.flatListRef = ref }
-				onEndReachedThreshold={0.2}
+				onEndReachedThreshold={0.3}
 				onEndReached={() => searchMore(type)}
 				data={this.props[type].items}
 				ListFooterComponent={<ShowLoader isFetching={isFetchingMore}/>}

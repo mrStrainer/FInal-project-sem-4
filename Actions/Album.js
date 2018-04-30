@@ -41,15 +41,15 @@ const fetchAlbum = (albumId, token) => dispatch => {
 }
 
 const shouldFetchAlbum = (state, albumId) => {
-	const { album, isFetching } = state;
+	const { album } = state;
 
-	if (isFetching || album.id === albumId) 
+	if (album.isFetching || album.id === albumId) 
 		return false;
 
 	return true;
 }
 
-export const fetchAlbumIfNeeded = albumId => (dispatch, getState) => {
+export const fetchAlbumIfNeeded = (albumId = '67smHJOf5YlFwad6dAlppm') => (dispatch, getState) => {
 	if (shouldFetchAlbum(getState(), albumId)){
 		return dispatch(fetchAlbum(albumId, getState().auth.token));
 	}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
-import { formatDuration } from './helpers/Utility';
+import { formatDuration } from './Helpers';
 import Styles from '../Styles/Track'
 
 const Track = ({ tracknr, name, duration, last }) => {

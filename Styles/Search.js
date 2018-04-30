@@ -15,7 +15,6 @@ const Styles = StyleSheet.create({
 	},
 	Results: {
 		paddingTop:10,
-		paddingBottom:40,
 	},
 	Text: {
 		color:'#ccc',

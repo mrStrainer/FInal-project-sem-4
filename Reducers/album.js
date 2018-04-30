@@ -1,5 +1,5 @@
 const album = (state = {
-	isFetching: false
+	isFetching: false,
 }, action) => {
 	switch (action.type) {
 		case 'REQUEST_ALBUM':

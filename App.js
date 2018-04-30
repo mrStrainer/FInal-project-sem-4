@@ -5,6 +5,7 @@ import { NativeRouter, Route, Link } from 'react-router-native';
 import Styles from './Styles/App'
 import store from './Store'
 import Main from './Containers/Main'
+import Album from './Containers/Album'
 import Search from './Containers/Search'
 import NavBar from './Containers/NavBar'
 
@@ -26,8 +27,9 @@ export default class App extends React.Component {
                     <View style={Styles.Container}>
                         <NavBar/>
                         <View style={Styles.Container}>
-                            <Route path="/" component={Search}/>
+                            <Route exact path="/" component={Search}/>
                             <Route path="/search" component={Search}/>
+                            <Route path="/album/:id" component={Album}/>
                         </View>
                     </View>
                 </NativeRouter>
