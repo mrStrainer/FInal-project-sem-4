@@ -1,18 +1,26 @@
 import React from 'react'
 import { StyleSheet, View, Text, TouchableHighlight } from 'react-native'
 import { Link } from 'react-router-native';
-import Styles from '../../Styles/Main'
+import Styles from '../../Styles/Playlist'
 import Login from '../Login' 
 
-const Playlist = ({ isLoggedIn, runAuthentication, logout }) => {
-	return (
-		<View style={Styles.center}>
-			<Link to='/search/'><Text style={Styles.navText}>Search</Text></Link>
-			<Link to='/album/'><Text style={Styles.navText}>Album</Text></Link>
-			<Link to='/profile/me'><Text style={Styles.navText}>Profile</Text></Link>
-			<Link to='/playlist/me'><Text style={Styles.navText}>Playlist</Text></Link>
-		</View>
-    )
+export default class Playlist extends React.Component {
+	componentDidMount() {
+		this.props.fetchPlaylist(this.props.match.params.id);
+	}
+	// link to playlists
+	render () {
+		const { isFetching, playlist } = this.props.playlist;
+		if (playlist && !isFetching)
+			return (
+				<View style={Styles.profileContainer}>
+					<View style={Styles.center}>
+						<Text style={Styles.headerText}>{profile.name}</Text>
+						<Text style={Styles.text}>{profile.id}</Text>
+						<Text style={Styles.text}>{profile.followers}</Text>
+					</View>
+				</View>
+		    )
+		return <Text style={{color:'#ccc'}}>No playlists</Text>
+	}
 }
-
-export default Playlist;

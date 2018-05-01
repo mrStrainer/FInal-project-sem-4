@@ -7,9 +7,6 @@ import Styles from '../../Styles/Album'
 import ShowLoader from '../ShowLoader'
 
 export default class Album extends React.Component {
-    constructor(props) {
-        super(props)
-    }
     componentDidMount() {
         this.props.fetchAlbumIfNeeded(this.props.match.params.id)
     }
@@ -29,10 +26,6 @@ export default class Album extends React.Component {
                 </View>       
             )
         } 
-        return (
-            <View style={{ flex: 1, padding: 20 }}>
-                <ActivityIndicator />
-            </View>
-        )
+        return <Text style={{color:'#ccc'}}>Cant find album</Text>
     }
 }

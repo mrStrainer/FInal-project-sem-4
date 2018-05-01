@@ -8,6 +8,7 @@ export default class Profile extends React.Component {
 	componentDidMount() {
 		this.props.fetchProfile(this.props.match.params.id);
 	}
+	// link to playlists
 	render () {
 		const { isFetching, profile } = this.props.profile;
 		if (profile && !isFetching)
@@ -20,6 +21,6 @@ export default class Profile extends React.Component {
 					</View>
 				</View>
 		    )
-		return <Text>No profile</Text>
+		return <Text style={{color:'#ccc'}}>No profile</Text>
 	}
 }

@@ -6,10 +6,9 @@ export const REQUEST_MORE_SEARCH = 'REQUEST_MORE_SEARCH'
 export const RECEIVE_MORE_SEARCH = 'RECEIVE_MORE_SEARCH'
 export const RECEIVE_NO_RESULT = 'RECEIVE_NO_RESULT'
 
-export const requestSearch = (searchQ/*, offset*/) => ({
+export const requestSearch = (searchQ) => ({
 	type:REQUEST_SEARCH,
 	searchQ,
-	//offset
 })
 
 export const receiveSearch = results => ({
