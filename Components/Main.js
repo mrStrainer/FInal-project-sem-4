@@ -10,7 +10,7 @@ const Main = ({ isLoggedIn, runAuthentication, logout }) => {
 			<Link to='/search/'><Text style={Styles.navText}>Search</Text></Link>
 			<Link to='/album/'><Text style={Styles.navText}>Album</Text></Link>
 			<Link to='/profile/me'><Text style={Styles.navText}>Profile</Text></Link>
-			<Link to='/playlist/'><Text style={Styles.navText}>Playlist</Text></Link>
+			<Link to='/playlist/me'><Text style={Styles.navText}>Playlist</Text></Link>
 		</View>
     )
 }

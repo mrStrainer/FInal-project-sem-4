@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet, View, Text, TouchableHighlight } from 'react-native'
 import { Link } from 'react-router-native';
-import Styles from '../Styles/Main'
-import Login from './Login' 
+import Styles from '../../Styles/Main'
+import Login from '../Login' 
 
 const Playlist = ({ isLoggedIn, runAuthentication, logout }) => {
 	return (
@@ -10,7 +10,7 @@ const Playlist = ({ isLoggedIn, runAuthentication, logout }) => {
 			<Link to='/search/'><Text style={Styles.navText}>Search</Text></Link>
 			<Link to='/album/'><Text style={Styles.navText}>Album</Text></Link>
 			<Link to='/profile/me'><Text style={Styles.navText}>Profile</Text></Link>
-			<Link to='/playlist/'><Text style={Styles.navText}>Playlist</Text></Link>
+			<Link to='/playlist/me'><Text style={Styles.navText}>Playlist</Text></Link>
 		</View>
     )
 }

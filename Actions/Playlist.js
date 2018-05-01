@@ -11,3 +11,6 @@ export const fetchOwnPlaylists = (options) => {
 			return res;
 		})
 }
+
+// 	/v1/me/playlists current users list of playlists
+// 	/v1/users/{user_id}/playlists list of users playlists

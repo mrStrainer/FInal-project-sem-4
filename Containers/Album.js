@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { fetchAlbumIfNeeded } from '../Actions/'
-import Album from '../Components/Album' 
+import Album from '../Components/Album/' 
 
 function mapStateToProps(state) {
 	return {

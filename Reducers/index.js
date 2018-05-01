@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux'
 //import { routerReducer } from 'react-router-redux' 
-import album from './album'
-import search from './search'
-import auth from './auth'
+import album from './Album'
+import search from './Search'
+import auth from './Auth'
+import profile from './Profile'
 
 const rootReducer = combineReducers({
 	album,
 	search,
 	auth,
+	profile,
 	//router: routerReducer
 })
 

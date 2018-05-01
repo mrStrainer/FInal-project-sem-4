@@ -1,11 +1,10 @@
 import { json, status, createHeader } from './Helpers'
 
-const REQUEST_PROFILE = 'REQUEST_OWN_PROFILE'
-const RECEIVE_PROFILE = 'RECEIVE_OWN_PROFILE'
+const REQUEST_PROFILE = 'REQUEST_PROFILE'
+const RECEIVE_PROFILE = 'RECEIVE_PROFILE'
 
-export const requestProfile = id => ({
+export const requestProfile = () => ({
 	type: REQUEST_PROFILE,
-	token
 })
 
 export const receiveProfile = profile => ({
@@ -23,7 +22,7 @@ export const fetchProfile = (id = 'me') => (dispatch, getState) => {
 	const endPoint = id === 'me' ? '/me' : `/users/${id}`
 	const { token } = getState().auth; 
 	dispatch(requestProfile(id));
-	return fetch(`https://api.spotify.com/v1${endpoint}`, createHeader('GET', token))
+	return fetch(`https://api.spotify.com/v1${endPoint}`, createHeader('GET', token))
 		.then(json)
 		.then(status)
 		.then(profileResponse)

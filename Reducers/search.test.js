@@ -1,4 +1,4 @@
-import search from './search'
+import search from './Search'
 
 describe('search reducer', () => {
 	it('should deal with initial state', () => {

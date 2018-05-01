@@ -21,6 +21,8 @@ const NavBar = ({ isLoggedIn, runAuthentication, logout }) => {
 			<Route exact path='/' render={(props) => <NavItem text={mainNavText} {...props}/> }/>
 			<Route path='/search' render={(props)=> <NavItem text='Search'  {...props}/> }/>
 			<Route path='/album/:id' render={(props)=> <NavItem text='Album' {...props}/> }/>
+			<Route path='/profile/:id' render={(props)=> <NavItem text='Profile'  {...props}/> }/>
+			<Route path='/playlist/:id' render={(props)=> <NavItem text='Playlist'  {...props}/> }/>
 			<Login isLoggedIn={isLoggedIn} login={runAuthentication} logout={logout} />
 		</SafeAreaView>
 	)

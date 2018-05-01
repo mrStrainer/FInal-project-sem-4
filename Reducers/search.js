@@ -1,4 +1,4 @@
-import searchMore from './searchMore'
+import searchMore from './SearchMore'
 
 const search = (state = {
 	isFetching:false,

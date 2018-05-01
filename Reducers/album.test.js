@@ -1,4 +1,4 @@
-import albumReducer from './album'
+import albumReducer from './Album'
 
 describe('albumReducer reducer', () => {
 	it('should deal with initial state', () => {

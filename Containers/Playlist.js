@@ -1,12 +1,12 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { fetchPlaylist, runAuthentication, logout } from '../Actions/'
-import Playlist from '../Components/Playlist' 
+import Playlist from '../Components/Playlist/' 
 
 function mapStateToProps(state) {
 	return {
 		isLoggedIn:state.auth.isLoggedIn,
-		playlist:state.Playlist
+		playlist:state.playlist
 	}
 }
 

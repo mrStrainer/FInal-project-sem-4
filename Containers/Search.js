@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { searchNew, searchMore } from '../Actions/'
-import Search from '../Components/Search' 
+import Search from '../Components/Search/' 
 
 function mapStateToProps(state) {
 	return {

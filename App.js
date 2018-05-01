@@ -20,7 +20,6 @@ YellowBox.ignoreWarnings([
 ]);
 
 export default class App extends React.Component {
-    state = {};
     // history={history}
     render() {
         return (
@@ -36,6 +35,7 @@ export default class App extends React.Component {
                             <Route path="/album/:id" component={Album}/>
                             <Route path="/profile/me" component={Profile}/>
                             <Route path="/playlist/:id" component={Playlist}/>
+                            <Route path="/playlist/me" component={Playlist}/>
                             </Switch>
                         </View>
                     </View>

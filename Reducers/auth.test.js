@@ -1,4 +1,4 @@
-import auth from './auth'
+import auth from './Auth'
 
 describe('login reducer', () => {
 	it('should deal with initial state', () => {

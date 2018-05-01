@@ -1,8 +1,8 @@
 import React from "react";
 import { Text, View, Image } from "react-native";
 import { Link } from 'react-router-native';
-import Styles from '../Styles/SearchItem';
-import Placeholder from './Resources/none.png'
+import Styles from '../../Styles/SearchItem';
+import Placeholder from '../Resources/none.png'
 
 export const SingleAlbum = ({ id, name, artist, image, last}) => {
 	let source = Placeholder;
