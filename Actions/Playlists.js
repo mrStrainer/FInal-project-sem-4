@@ -70,7 +70,7 @@ export const fetchMorePlaylists = () => (dispatch, getState) => {
 	}
 	const endPoint = id === 'me' ? '/me/playlists' : `/users/${id}/playlists`
 
-	return fetch(`https://api.spotify.com/v1${endPoint}?limit=15&offset=${offset}`, createHeader('GET', token))
+	return fetch(`https://api.spotify.com/v1${endPoint}?limit=15&offset=${offset+15}`, createHeader('GET', token))
 		.then(json)
 		.then(status)
 		.then(playlistsResponse)

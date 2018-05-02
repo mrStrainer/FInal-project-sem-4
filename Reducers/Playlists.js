@@ -12,7 +12,9 @@ const playlists = (state = {
 			return {
 				...state,
 				isFetching:false,
-				playlists:action.playlists,
+				total:action.playlists.total,
+				offset:action.playlists.offset,
+				playlists:action.playlists.playlists,
 			}
 		case 'REQUEST_MORE_PLAYLISTS':
 			return {
@@ -22,15 +24,12 @@ const playlists = (state = {
 		case 'RECEIVE_MORE_PLAYLISTS': 
 			return {
 				...state,
+				offset:action.playlists.offset,
 				isFetchingMore:false,
-				playlists:{
+				playlists:[
 					...state.playlists,
-					offset:action.playlists.offset,
-					playlists:[
-						...state.playlists.playlists,
-						...action.playlists.playlists
-					]
-				}
+					...action.playlists.playlists
+				]
 			}
 		case 'RECEIVE_NO_PLAYLISTS':
 			return {

@@ -11,18 +11,21 @@ export default class Playlist extends React.Component {
 	}
 	// link to playlists
 	// ui for playlist item
-	       //              <FlatList 
-				    //     data={playlists}
-				    //     ListFooterComponent={<ShowLoader isFetching={isFetchingMore}/>}
-				    //     keyExtractor={(item,i) => `${i}-${item.id}`}
-				    //     renderItem={({item}, i) => <Text> {item.name}</Text>}
-				    // />
+
 	render () {
 		const { isFetching, isFetchingMore, playlists } = this.props.playlists;
+		const { fetchMorePlaylists } = this.props;
 		if (playlists && !isFetching){
 			return (
 				<View style={Styles.playlistContainer}>
-
+					<FlatList 
+						onEndReachedThreshold={0.3}
+						onEndReached={() => fetchMorePlaylists()}
+				        data={playlists}
+				        ListFooterComponent={<ShowLoader isFetching={isFetchingMore}/>}
+				        keyExtractor={(item,i) => `${i}-${item.id}`}
+				        renderItem={({item}, i) => <Text>{item.name}</Text>}
+				    />
 				</View>
 		    )
 		}

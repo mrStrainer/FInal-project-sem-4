@@ -45,14 +45,12 @@ describe('playlists reducer', () => {
 		).toEqual({
 			id:'id',
 			isFetching:false,
-			playlists:{
-				offset:0,
-				total:1,
-				playlists:[{
-					name:'name',
-					id:'id'
-				}]
-			}
+			offset:0,
+			total:1,
+			playlists:[{
+				name:'name',
+				id:'id'
+			}]
 		})
 	})
 
@@ -78,14 +76,12 @@ describe('playlists reducer', () => {
 			playlists({
 				id:'id',
 				isFetching:false,
-				playlists:{
-					offset:0,
-					total:1,
-					playlists:[{
-						name:'name',
-						id:'id'
-					}]
-				}
+				offset:0,
+				total:1,
+				playlists:[{
+					name:'name',
+					id:'id'
+				}]
 			},{
 				type:'RECEIVE_MORE_PLAYLISTS',
 				playlists:{
@@ -101,17 +97,15 @@ describe('playlists reducer', () => {
 			id:'id',
 			isFetching:false,
 			isFetchingMore:false,
-			playlists:{
-				offset:1,
-				total:1,
-				playlists:[{
-					name:'name',
-					id:'id'
-				},{
-					name:'name1',
-					id:'id1'
-				}]
-			}
+			offset:1,
+			total:1,
+			playlists:[{
+				name:'name',
+				id:'id'
+			},{
+				name:'name1',
+				id:'id1'
+			}]
 		})
 	})
 
