@@ -3,8 +3,9 @@ import * as actions from './index'
 describe('Profile actions', () => {
 
 	it('requestProfile should create REQUEST_PROFILE action', () => {
-		expect(actions.requestProfile()).toEqual({
-			type:'REQUEST_PROFILE'
+		expect(actions.requestProfile('id')).toEqual({
+			type:'REQUEST_PROFILE',
+			id:'id'
 		})
 	})
 

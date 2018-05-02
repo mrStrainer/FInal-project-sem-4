@@ -2,17 +2,20 @@ import { json, status, createHeader } from './Helpers'
 
 const REQUEST_PLAYLISTS = 'REQUEST_PLAYLISTS'
 const RECEIVE_PLAYLISTS = 'RECEIVE_PLAYLISTS'
-const REQUEST_MORE_PLAYLISTS= 'REQUEST_MORE_PLAYLISTS'
-const RECEIVE_MORE_PLAYLISTS= 'RECEIVE_MORE_PLAYLISTS'
+const REQUEST_MORE_PLAYLISTS = 'REQUEST_MORE_PLAYLISTS'
+const RECEIVE_MORE_PLAYLISTS = 'RECEIVE_MORE_PLAYLISTS'
 const RECEIVE_NO_PLAYLISTS = 'RECEIVE_NO_PLAYLISTS'
 
+// TODO
+// REDUCERS, playlist ui
+
 export const requestPlaylists = id => ({
-	type: REQUEST_PROFILE,
+	type: REQUEST_PLAYLISTS,
 	id
 })
 
 export const receivePlaylists = playlists => ({
-	type:RECEIVE_PROFILE,
+	type:RECEIVE_PLAYLISTS,
 	playlists
 })
 
@@ -29,22 +32,22 @@ export const receiveNoPlaylists = () => ({
 	type:RECEIVE_NO_PLAYLISTS,
 })
 
-playlistsResponse = responsePlaylists => ({
+const playlistsResponse = responsePlaylists => {
 	const { items, total, offset } = responsePlaylists;
 	const playlists = items.map(playlist => ({
 		name:playlist.name,
 		id:playlist.id,
 		public:playlist.public,
 		total_tracks:playlist.tracks.total,
-		owner: playlist.owner.display_name || playlist.owner.id,
+		owner: playlist.owner.id,
 	}));
 	return {
 		offset,
 		total,
 		playlists
 	}
+}
 
-})
 export const fetchPlaylists = (id = 'me') => (dispatch, getState) => {
 	const endPoint = id === 'me' ? '/me/playlists' : `/users/${id}/playlists`
 	const { token } = getState().auth; 

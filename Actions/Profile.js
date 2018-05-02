@@ -3,8 +3,9 @@ import { json, status, createHeader } from './Helpers'
 const REQUEST_PROFILE = 'REQUEST_PROFILE'
 const RECEIVE_PROFILE = 'RECEIVE_PROFILE'
 
-export const requestProfile = () => ({
-	type: REQUEST_PROFILE,
+export const requestProfile = id => ({
+	type:REQUEST_PROFILE,
+	id
 })
 
 export const receiveProfile = profile => ({
@@ -12,8 +13,8 @@ export const receiveProfile = profile => ({
 	profile
 })
 
-profileResponse = responseProfile => ({
-	name: responseProfile.display_name || responseProfile.id,
+const profileResponse = responseProfile => ({
+	name:responseProfile.display_name || responseProfile.id,
 	id:responseProfile.id,
 	followers:responseProfile.followers.total,
 	type:responseProfile.type,

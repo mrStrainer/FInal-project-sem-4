@@ -7,7 +7,7 @@ import store from './Store'
 import Main from './Containers/Main'
 import Album from './Containers/Album'
 import Profile from './Containers/Profile'
-import Playlist from './Containers/Playlist'
+import Playlists from './Containers/Playlists'
 import Search from './Containers/Search'
 import NavBar from './Containers/NavBar'
 
@@ -34,8 +34,8 @@ export default class App extends React.Component {
                             <Route exact path="/album/" component={Album}/>
                             <Route path="/album/:id" component={Album}/>
                             <Route path="/profile/me" component={Profile}/>
-                            <Route path="/playlist/:id" component={Playlist}/>
-                            <Route path="/playlist/me" component={Playlist}/>
+                            <Route path="/playlist/:id" component={Playlists}/>
+                            <Route path="/playlist/me" component={Playlists}/>
                             </Switch>
                         </View>
                     </View>
