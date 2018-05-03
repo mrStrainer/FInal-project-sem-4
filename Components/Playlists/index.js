@@ -7,7 +7,7 @@ import Login from '../Login'
 
 export default class Playlist extends React.Component {
 	componentDidMount() {
-		this.props.fetchPlaylists(this.props.match.params.id);
+		this.props.fetchPlaylists(this.props.match.params.userId);
 	}
 	// link to playlists
 	// ui for playlist item

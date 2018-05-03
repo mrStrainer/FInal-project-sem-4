@@ -37,13 +37,13 @@ const fetchAlbum = (albumId, token) => dispatch => {
  		.then(status)
  		.then(albumResponse)
  		.then(album => dispatch(receiveAlbum(album)))
- 		.catch(error => console.log(error))
+ 		.catch(error => console.log(error, albumId))
 }
 
 const shouldFetchAlbum = (state, albumId) => {
 	const { album } = state;
 
-	if (album.isFetching || album.id === albumId) 
+	if (albumId === undefined || album.isFetching || album.album !== undefined && album.id === albumId) 
 		return false;
 
 	return true;

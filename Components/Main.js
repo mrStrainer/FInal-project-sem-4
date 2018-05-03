@@ -11,6 +11,7 @@ const Main = ({ isLoggedIn, runAuthentication, logout }) => {
 			<Link to='/album/'><Text style={Styles.navText}>Album</Text></Link>
 			<Link to='/profile/me'><Text style={Styles.navText}>Profile</Text></Link>
 			<Link to='/playlist/me'><Text style={Styles.navText}>Playlist</Text></Link>
+			<Link to='/artist/1Bl6wpkWCQ4KVgnASpvzzA'><Text style={Styles.navText}>Artist</Text></Link>
 		</View>
     )
 }

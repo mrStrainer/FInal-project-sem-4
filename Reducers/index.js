@@ -5,6 +5,7 @@ import search from './Search'
 import auth from './Auth'
 import profile from './Profile'
 import playlists from './Playlists'
+import artist from './Artist'
 
 const rootReducer = combineReducers({
 	album,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
 	auth,
 	profile,
 	playlists,
+	artist,
 	//router: routerReducer
 })
 

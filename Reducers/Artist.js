@@ -1,21 +1,20 @@
-const album = (state = {
+const artist = (state = {
 	isFetching: false,
-	album:{}
 }, action) => {
 	switch (action.type) {
-		case 'REQUEST_ALBUM':
+		case 'REQUEST_ARTIST':
 			return {
 				...state,
 				isFetching:true
 			}
-		case 'RECEIVE_ALBUM':
+		case 'RECEIVE_ARTIST':
 			return {
 				...state,
 				isFetching:false,
-				album:action.album
+				artist:action.artist
 			}
 		default:
 			return state;
 	}
 }
-export default album;
+export default artist;

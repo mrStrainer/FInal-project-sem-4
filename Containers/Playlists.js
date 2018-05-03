@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({fetchPlaylists, fetchMorePlaylists, runAuthentication, logout}, dispatch);
+	return bindActionCreators({fetchPlaylists, fetchMorePlaylists}, dispatch);
 }
 
 const PlaylistsContainer = connect(mapStateToProps,mapDispatchToProps)(Playlists);

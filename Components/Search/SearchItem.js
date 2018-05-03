@@ -27,7 +27,7 @@ const SingleArtist= ({ id, name, image, last }) => {
 	return (
 		<View style={last ? Styles.searchItemNoBorder : Styles.searchItem}>
 		<Image source={source} style={Styles.albumImg}/>
-			<Link to={`/album/${id}`}>
+			<Link to={`/artist/${id}`}>
 				<View style={{width:285}}>
 					<Text style={Styles.albumTitle} numberOfLines={1} ellipsizeMode='tail'>{name}</Text>
 				</View>

@@ -6,6 +6,7 @@ describe('albumReducer reducer', () => {
 			albumReducer(undefined,{})
 		).toEqual({
 			isFetching:false,
+			album:{}
 		})
 	})
 
@@ -15,7 +16,8 @@ describe('albumReducer reducer', () => {
 				type:'REQUEST_ALBUM'
 			})
 		).toEqual({
-			isFetching:true
+			isFetching:true,
+			album:{}
 		})
 	})
 

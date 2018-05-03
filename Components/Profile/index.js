@@ -18,6 +18,7 @@ export default class Profile extends React.Component {
 						<Text style={Styles.headerText}>{profile.name}</Text>
 						<Text style={Styles.text}>{profile.id}</Text>
 						<Text style={Styles.text}>{profile.followers}</Text>
+						<Link to={`/playlist/${profile.id}`}><Text>Playlists</Text></Link>
 					</View>
 				</View>
 		    )

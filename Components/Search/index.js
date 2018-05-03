@@ -5,8 +5,8 @@ import StyledButton from '../StyledButton'
 import StyledInput from '../StyledInput'
 import Styles from '../../Styles/Search'
 import SearchResults from './SearchResults'
-import withSpinner from './withSpinnerHOC'
-import withResults from './withResultsHOC'
+import withSpinner from '../withSpinnerHOC'
+import withResults from '../withResultsHOC'
 import { Route, Link } from 'react-router-native';
 
 //TODO 
@@ -79,7 +79,7 @@ export default class Search extends React.Component {
 					{typeSelect.map(
 						(route, index) => 
 							<Route exact={true} key={index} path={route.path} render={
-								(props) => <SearchResultsWithCheckAndSpinner {...this.props.search} type={route.type} searchMore={searchMore}/>}
+								(props) => <SearchResultsWithCheckAndSpinner {...this.props.search} type={route.type} message={'Search for something'} searchMore={searchMore}/>}
 							/> 
 					)}
                 </View>
