@@ -37,7 +37,7 @@ const playlistsResponse = responsePlaylists => {
 	const playlists = items.map(playlist => ({
 		name:playlist.name,
 		id:playlist.id,
-		public:playlist.public,
+		isPublic:playlist.public,
 		total_tracks:playlist.tracks.total,
 		owner: playlist.owner.id,
 	}));
