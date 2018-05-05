@@ -32,4 +32,11 @@ describe('artist actions', () => {
 			}
 		})
 	}) 
+
+	it('errorArtist should create ERROR_ARTIST action', () => {
+		expect(actions.errorArtist('404: not found')).toEqual({
+			type:'ERROR_ARTIST',
+			error:'404: not found'
+		})
+	})
 })

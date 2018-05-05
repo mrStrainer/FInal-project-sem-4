@@ -14,6 +14,11 @@ const album = (state = {
 				isFetching:false,
 				album:action.album
 			}
+		case 'ERROR_ALBUM':
+			return {
+				...state, 
+				isFetching:false,
+			}
 		default:
 			return state;
 	}

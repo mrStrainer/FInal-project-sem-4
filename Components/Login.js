@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-native';
 import StyledIcon from './StyledIcon';
 
-const LoginOrLogout = ({isLoggedIn, login, logout}) => {
+const LoginOrLogout = ({ isLoggedIn, login, logout }) => {
 	return (
 		isLoggedIn?(
 				<StyledIcon name='logout-variant' onPress={logout}/>

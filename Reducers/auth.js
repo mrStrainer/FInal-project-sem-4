@@ -13,6 +13,11 @@ const auth = (state ={
 				...state,
 				isLoggedIn:false
 			}
+		case 'ERROR_AUTH':
+			return {
+				...state, 
+				isLoggedIn:false,
+			}
 		default:
 			return state;
 	}

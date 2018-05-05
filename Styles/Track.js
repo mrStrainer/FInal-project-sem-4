@@ -10,15 +10,6 @@ const Styles = StyleSheet.create({
 		height:40,
 		alignItems:'center'
 	},
-	trackViewNoBorder: {
-		flex:1,
-		padding:5,
-		margin:0,
-		marginBottom:Platform.OS === 'ios' ? 20:5,
-		flexDirection:'row',
-		height:40,
-		alignItems:'center'
-	},
 	trackTitle: {
 		color: "#ccc", 
 		padding: 2, 
@@ -38,6 +29,16 @@ const Styles = StyleSheet.create({
 		padding: 2, 
 		paddingTop:6,
 		marginLeft:'auto'
+	},
+	Highlight: {
+		borderBottomColor:'#282828',
+		borderBottomWidth:1,
+		backgroundColor:'#292929',
+		padding:5,
+		margin:0,
+		flexDirection:'row',
+		height:40,
+		alignItems:'center'
 	}
 });
 

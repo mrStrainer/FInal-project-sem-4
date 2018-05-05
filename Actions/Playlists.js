@@ -5,6 +5,7 @@ const RECEIVE_PLAYLISTS = 'RECEIVE_PLAYLISTS'
 const REQUEST_MORE_PLAYLISTS = 'REQUEST_MORE_PLAYLISTS'
 const RECEIVE_MORE_PLAYLISTS = 'RECEIVE_MORE_PLAYLISTS'
 const RECEIVE_NO_PLAYLISTS = 'RECEIVE_NO_PLAYLISTS'
+const ERROR_PLAYLISTS = 'ERROR_PLAYLISTS'
 
 // TODO
 // REDUCERS, playlist ui
@@ -32,6 +33,11 @@ export const receiveNoPlaylists = () => ({
 	type:RECEIVE_NO_PLAYLISTS,
 })
 
+export const errorPlaylists = error => ({
+	type:ERROR_PLAYLISTS,
+	error
+})
+
 const playlistsResponse = responsePlaylists => {
 	const { items, total, offset } = responsePlaylists;
 	const playlists = items.map(playlist => ({
@@ -57,7 +63,10 @@ export const fetchPlaylists = (id = 'me') => (dispatch, getState) => {
 		.then(status)
 		.then(playlistsResponse)
 		.then(playlists => dispatch(receivePlaylists(playlists)))
-		.catch(error => console.log(error))
+		.catch(error => {
+			dispatch(errorPlaylists(error))
+			console.log(error)
+		})
 }
 
 export const fetchMorePlaylists = () => (dispatch, getState) => {
@@ -75,5 +84,8 @@ export const fetchMorePlaylists = () => (dispatch, getState) => {
 		.then(status)
 		.then(playlistsResponse)
 		.then(playlists => dispatch(receiveMorePlaylists(playlists)))
-		.catch(error => console.log(error))
+		.catch(error => {
+			dispatch(errorPlaylists(error))
+			console.log(error)
+		})
 }

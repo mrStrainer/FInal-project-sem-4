@@ -57,4 +57,17 @@ describe('login reducer', () => {
 
 	})
 
+	it('should handle ERROR_AUTH', () => {
+		expect(
+			auth({
+				isLoggedIn:true
+			}, {
+				type:'ERROR_AUTH',
+				error:'error'
+			})
+		).toEqual({
+			isLoggedIn:false
+		})
+	})
+
 })

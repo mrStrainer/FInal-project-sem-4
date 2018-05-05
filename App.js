@@ -34,7 +34,7 @@ export default class App extends React.Component {
                             <Route path="/search" component={Search}/>
                             <Route exact path="/album/" component={Album}/>
                             <Route path="/album/:albumId" component={Album}/>
-                            <Route path="/profile/me" component={Profile}/>
+                            <Route path="/profile/:profileId" component={Profile}/>
                             <Route path="/playlist/:userId" component={Playlists}/>
                             <Route path="/playlist/me" component={Playlists}/>
                             <Route path="/artist/:artistId" component={Artist}/>

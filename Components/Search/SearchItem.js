@@ -4,12 +4,12 @@ import { Link } from 'react-router-native';
 import Styles from '../../Styles/SearchItem';
 import Placeholder from '../Resources/none.png'
 
-export const SingleAlbum = ({ id, name, artist, image, last}) => {
+export const SingleAlbum = ({ id, name, artist, image }) => {
 	let source = Placeholder;
 	if (image)
 		source = { uri : image.url };
 	return (
-		<View style={last ? Styles.searchItemNoBorder : Styles.searchItem}>
+		<View style={Styles.searchItem}>
 		<Image source={source} style={Styles.albumImg}/>
 			<Link to={`/album/${id}`}>
 				<View style={{width:285}}>
@@ -20,12 +20,12 @@ export const SingleAlbum = ({ id, name, artist, image, last}) => {
 		</View>
 	)
 }
-const SingleArtist= ({ id, name, image, last }) => {
+const SingleArtist= ({ id, name, image }) => {
 	let source = Placeholder;
 	if (image)
 		source = { uri : image.url };
 	return (
-		<View style={last ? Styles.searchItemNoBorder : Styles.searchItem}>
+		<View style={Styles.searchItem}>
 		<Image source={source} style={Styles.albumImg}/>
 			<Link to={`/artist/${id}`}>
 				<View style={{width:285}}>
@@ -35,13 +35,13 @@ const SingleArtist= ({ id, name, image, last }) => {
 		</View>
 	)
 }
-const SingleTrack = ({ id, name, artists, album, last }) => {
+const SingleTrack = ({ id, name, artists, album, albumId }) => {
 	return (
-		<View style={last ? Styles.searchItemNoBorder : Styles.searchItem}>
-			<Link to={`/album/${id}`}>
+		<View style={Styles.searchItem}>
+			<Link to={`/album/${albumId}?highlight=${id}`}>
 				<View style={{width:285}}>
 					<Text style={Styles.albumTitle} numberOfLines={1} ellipsizeMode='tail'>{name}</Text>
-					<Text style={Styles.albumArtist} ellipsizeMode='tail'>{artists}</Text>
+					<Text style={Styles.albumArtist} numberOfLines={2} ellipsizeMode='tail'>{artists.join(', ')}</Text>
 				</View>
 			</Link>
 		</View>

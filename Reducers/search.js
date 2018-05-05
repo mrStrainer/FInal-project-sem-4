@@ -36,6 +36,12 @@ const search = (state = {
 				...state,
 				isFetchingMore:false
 			}
+		case 'ERROR_SEARCH':
+			return {
+				...state, 
+				isFetching:false,
+				isFetchingMore:false,
+			}
 		default:
 			return state;
 	}

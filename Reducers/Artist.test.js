@@ -50,4 +50,17 @@ describe('artistReducer reducer', () => {
 			}
 		})
 	})
+
+	it('should handle ERROR_ARTIST', () => {
+		expect(
+			artistReducer({
+				isFetching:true
+			}, {
+				type:'ERROR_ARTIST',
+				error:'error'
+			})
+		).toEqual({
+			isFetching:false
+		})
+	})
 })

@@ -12,6 +12,17 @@ const Styles = StyleSheet.create({
     borderRadius: 5, 
     margin:5,
   },
+  Link: {
+    backgroundColor: "rgba(24,24,24,0.7)",
+    height: 45,
+    minWidth:150,
+    opacity: 1,
+    borderWidth: 1,
+    borderColor: "rgba(24,24,24,0.5)",
+    borderStyle: "solid",
+    borderRadius: 4, 
+    margin:5,
+  },
   Icon: {
     opacity: 1,
     borderWidth: 1,
@@ -37,6 +48,12 @@ const Styles = StyleSheet.create({
   },
   Text: {
     flex:1,
+    padding:10,
+    textAlign:'center'
+  },
+  LinkText: {
+    flex:1,
+    fontSize:20,
     padding:10,
     textAlign:'center'
   }

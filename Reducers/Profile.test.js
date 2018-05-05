@@ -38,4 +38,17 @@ describe('profile reducer', () => {
 		})
 	})
 
+	it('should handle ERROR_PROFILE', () => {
+		expect(
+			profile({
+				isFetching:true
+			}, {
+				type:'ERROR_PROFILE',
+				error:'error'
+			})
+		).toEqual({
+			isFetching:false
+		})
+	})
+
 })

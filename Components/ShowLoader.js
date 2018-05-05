@@ -5,6 +5,6 @@ const ShowLoader = ({ isFetching }) =>
 	isFetching?(
 		<View style={{height:50, flex:1}}>
 			<ActivityIndicator />
-		</View>):null;
+		</View>):<View style={{height:50, flex:1}}/>;
 
 export default ShowLoader;

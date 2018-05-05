@@ -11,6 +11,7 @@ const Styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingBottom: 40,
+        backgroundColor:'#282828',
     },
     headerText: {
     	fontSize:20,

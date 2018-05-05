@@ -5,6 +5,7 @@ export const RECEIVE_SEARCH = 'RECEIVE_SEARCH'
 export const REQUEST_MORE_SEARCH = 'REQUEST_MORE_SEARCH'
 export const RECEIVE_MORE_SEARCH = 'RECEIVE_MORE_SEARCH'
 export const RECEIVE_NO_RESULT = 'RECEIVE_NO_RESULT'
+export const ERROR_SEARCH = 'ERROR_SEARCH'
 
 export const requestSearch = (searchQ) => ({
 	type:REQUEST_SEARCH,
@@ -28,6 +29,11 @@ export const receiveMoreSearch = (searchType,results) => ({
 })
 export const receiveNoResult = () => ({
 	type:RECEIVE_NO_RESULT,
+})
+
+export const errorSearch = error => ({
+	type:ERROR_SEARCH,
+	error
 })
 
 export const albumResponse = responseAlbums => {
@@ -59,7 +65,7 @@ export const trackResponse = responseTracks => {
 		artists:track.artists.map(artist => artist.name),
 		id:track.id,
 		album:track.album.name,
-
+		albumId:track.album.id,
 	}));
 	return tracks;
 }
@@ -112,7 +118,10 @@ export const searchMore = searchType => (dispatch, getState) => {
 		.then(status)
 		.then(searchResponse)
 		.then(results => dispatch(receiveMoreSearch(searchType,results)))
-		.catch(error => console.log(error))
+		.catch(error => {
+			dispatch(errorSearch(error))
+			console.log(error)
+		})
 }
 
 export const searchNew = (searchQ) => (dispatch, getState) => {
@@ -123,5 +132,8 @@ export const searchNew = (searchQ) => (dispatch, getState) => {
 		.then(status)
 		.then(searchResponse)
 		.then(results => dispatch(receiveSearch(results)))
-		.catch(error => console.log(error))
+		.catch(error => {
+			dispatch(errorSearch(error))
+			console.log(error)
+		})
 }

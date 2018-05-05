@@ -24,7 +24,7 @@ class SearchResults extends React.Component {
 				data={this.props[type].items}
 				ListFooterComponent={<ShowLoader isFetching={isFetchingMore}/>}
 				keyExtractor={(item,i) => `${i}-${item.id}`}
-				renderItem={({item}, i) => <SearchItem type={type} {...item} last={i === tracks.items.length-1 ? true : false}/>}
+				renderItem={({item}, i) => <SearchItem type={type} {...item}/>}
 			/>
 		)
 	}

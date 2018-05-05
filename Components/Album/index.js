@@ -8,14 +8,14 @@ import ShowLoader from '../ShowLoader'
 import withResults from '../withResultsHOC'
 import withSpinner from '../withSpinnerHOC'
 
-const AlbumResult = ({ album }) => {
+const AlbumResult = ({ album, highlight }) => {
     return ( 
         <FlatList 
             style={Styles.albumTracks}
             data={album.tracks}
             ListHeaderComponent={<AlbumHeader url={album.image.url} name={album.name} artist={album.artist}/>}
             keyExtractor={(item,i) => `${i}-${item.id}`}
-            renderItem={({item}, i) => <Track tracknr={item.track_number} duration={item.duration_ms} name={item.name} last={i === album.tracks.length-1 ? true : false}/>}
+            renderItem={({item}, i) => <Track tracknr={item.track_number} highlight={highlight === item.id} duration={item.duration_ms} name={item.name}/>}
         />
     )
 } 
@@ -31,7 +31,7 @@ export default class Album extends React.Component {
         const { album, isFetching } = this.props.album;
             return (
                 <View style={Styles.albumContainer}>
-                    <AlbumResultWithCheckAndSpinner results={this.props.album.album} message={'No album'} {...this.props.album}/>
+                    <AlbumResultWithCheckAndSpinner results={this.props.album.album} message={'No album'} {...this.props.album} highlight={this.props.location.search.slice(11,33)}/>
                 </View>       
             )
         return <Text style={{color:'#ccc'}}>Cant find album</Text>

@@ -143,6 +143,7 @@ describe('search reducer', () => {
 			results:{}
 		})
 	})
+
 	it('should handle RECEIVE_NO_RESULT', () => {
 		expect(
 			search(undefined,{
@@ -154,4 +155,27 @@ describe('search reducer', () => {
 			results:{}
 		})
 	})
+
+	it('should handle ERROR_SEARCH', () => {
+		expect(
+			search({
+				isFetching:true,
+				isFetchingMore:false,
+				results:{
+					e:'e'
+				}
+			},{
+				type:'ERROR_SEARCH',
+				error:'e'
+			})
+		).toEqual({
+			isFetching:false,
+			isFetchingMore:false,
+			results:{
+				e:'e'
+			}
+		})
+	})
+
+
 })

@@ -59,4 +59,17 @@ describe('albumReducer reducer', () => {
 			}
 		})
 	})
+
+	it('should handle ERROR_ALBUM', () => {
+		expect(
+			albumReducer({
+				isFetching:true
+			}, {
+				type:'ERROR_ALBUM',
+				error:'error'
+			})
+		).toEqual({
+			isFetching:false
+		})
+	})
 })

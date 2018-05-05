@@ -2,6 +2,7 @@ import { json, status, createHeader } from './Helpers'
 
 const REQUEST_PROFILE = 'REQUEST_PROFILE'
 const RECEIVE_PROFILE = 'RECEIVE_PROFILE'
+const ERROR_PROFILE = 'ERROR_PROFILE'
 
 export const requestProfile = id => ({
 	type:REQUEST_PROFILE,
@@ -13,11 +14,16 @@ export const receiveProfile = profile => ({
 	profile
 })
 
+export const errorProfile = error => ({
+	type:ERROR_PROFILE,
+	error
+})
 const profileResponse = responseProfile => ({
 	name:responseProfile.display_name || responseProfile.id,
 	id:responseProfile.id,
 	followers:responseProfile.followers.total,
 	type:responseProfile.type,
+	image:responseProfile.images[responseProfile.images.length-1]
 })
 export const fetchProfile = (id = 'me') => (dispatch, getState) => {
 	const endPoint = id === 'me' ? '/me' : `/users/${id}`
@@ -28,5 +34,8 @@ export const fetchProfile = (id = 'me') => (dispatch, getState) => {
 		.then(status)
 		.then(profileResponse)
 		.then(profile => dispatch(receiveProfile(profile)))
-		.catch(error => console.log(error))
+		.catch(error => {
+			dispatch(errorProfile(error))
+			console.log(error)
+		})
 }

@@ -38,4 +38,11 @@ describe('album actions', () => {
 			}
 		})
 	}) 
+
+	it('errorAlbum should create ERROR_ALBUM action', () => {
+		expect(actions.errorAlbum('401: Unauthorized')).toEqual({
+			type:'ERROR_ALBUM',
+			error:'401: Unauthorized'
+		})
+	})
 })

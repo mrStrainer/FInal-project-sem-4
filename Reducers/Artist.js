@@ -13,6 +13,11 @@ const artist = (state = {
 				isFetching:false,
 				artist:action.artist
 			}
+		case 'ERROR_ARTIST':
+			return {
+				...state, 
+				isFetching:false,
+			}
 		default:
 			return state;
 	}

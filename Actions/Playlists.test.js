@@ -73,4 +73,11 @@ describe('Profile actions', () => {
 			}
 		})
 	})
+
+	it('errorPlaylists should create ERROR_PLAYLISTS action', () => {
+		expect(actions.errorPlaylists('Cant load playlists')).toEqual({
+			type:'ERROR_PLAYLISTS',
+			error:'Cant load playlists'
+		})
+	})
 })

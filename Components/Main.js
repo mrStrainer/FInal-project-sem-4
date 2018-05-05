@@ -3,15 +3,16 @@ import { StyleSheet, View, Text, TouchableHighlight } from 'react-native'
 import { Link } from 'react-router-native';
 import Styles from '../Styles/Main'
 import Login from './Login' 
+import StyledLink from './StyledLink'
 
-const Main = ({ isLoggedIn, runAuthentication, logout }) => {
+const Main = () => {
 	return (
 		<View style={Styles.center}>
-			<Link to='/search/'><Text style={Styles.navText}>Search</Text></Link>
-			<Link to='/album/'><Text style={Styles.navText}>Album</Text></Link>
-			<Link to='/profile/me'><Text style={Styles.navText}>Profile</Text></Link>
-			<Link to='/playlist/me'><Text style={Styles.navText}>Playlist</Text></Link>
-			<Link to='/artist/1Bl6wpkWCQ4KVgnASpvzzA'><Text style={Styles.navText}>Artist</Text></Link>
+			<StyledLink to='/search/' text='Search'/>
+			<StyledLink to='/album/' text='Album'/>
+			<StyledLink to='/profile/hotsince82' text='Profile'/>
+			<StyledLink to='/playlist/hotsince82' text='Playlist'/>
+			<StyledLink to='/artist/1Bl6wpkWCQ4KVgnASpvzzA' text='Artist'/>
 		</View>
     )
 }

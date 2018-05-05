@@ -1,8 +1,8 @@
 import { json, status, createHeader } from './Helpers'
 
 export const REQUEST_ALBUM = 'REQUEST_ALBUM'
-
 export const RECEIVE_ALBUM = 'RECEIVE_ALBUM'
+export const ERROR_ALBUM = 'ERROR_ALBUM'
 
 export const requestAlbum = albumId => ({
 	type:REQUEST_ALBUM,
@@ -12,6 +12,11 @@ export const requestAlbum = albumId => ({
 export const receiveAlbum = album => ({
 	type:RECEIVE_ALBUM,
 	album, 
+})
+
+export const errorAlbum = error => ({
+	type:ERROR_ALBUM,
+	error
 })
 
 const albumResponse = album => ({
@@ -37,7 +42,10 @@ const fetchAlbum = (albumId, token) => dispatch => {
  		.then(status)
  		.then(albumResponse)
  		.then(album => dispatch(receiveAlbum(album)))
- 		.catch(error => console.log(error, albumId))
+ 		.catch(error => {
+ 			dispatch(errorAlbum(error))
+ 			console.log(error, albumId)
+ 		})
 }
 
 const shouldFetchAlbum = (state, albumId) => {

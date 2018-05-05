@@ -126,4 +126,27 @@ describe('playlists reducer', () => {
 		})
 	})
 
+	it('should handle ERROR_PLAYLISTS', () => {
+		expect(
+			playlists({
+				id:'id',
+				isFetching:true,
+				isFetchingMore:false,
+				playlists:{
+					e:'e'
+				}
+			},{
+				type:'ERROR_PLAYLISTS',
+				error:'error'
+			})
+		).toEqual({
+			id:'id',
+			isFetching: false,
+			isFetchingMore:false,
+			playlists:{
+				e:'e'
+			}
+		})
+	})
+
 })

@@ -19,6 +19,12 @@ const Styles = StyleSheet.create({
 	Text: {
 		color:'#ccc',
 	},
+	Message: {
+		flex:1,
+		paddingTop:13,
+		textAlign:'center',
+		color:'#ccc',
+	},
 	SearchBar: {
 		backgroundColor:'#282828',
 		alignItems:'center', 

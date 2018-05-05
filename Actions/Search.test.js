@@ -121,18 +121,21 @@ describe('search actions', () => {
 				artists:["Muse"],
 				id:"4VqPOruhp5EdPBeR92t6lQ",
 				album:"The Resistance",
+				"albumId": "0eFHYz8NmK75zSplL5qlfM",
 			},	
 			{
 				name:"Starlight",
 				artists:["Muse"],
 				id:"3skn2lauGk7Dx6bVIt5DVj",
 				album:"Black Holes And Revelations",
+				"albumId": "0lw68yx3MhKflWFqCsGkIs",
 			},
 			{
 				name:"Supermassive Black Hole",
 				artists:["Muse"],
 				id:"3lPr8ghNDBLc2uZovNyLs9",
 				album:"Black Holes And Revelations",
+				"albumId": "0lw68yx3MhKflWFqCsGkIs",
 			},
 
 		])
@@ -222,21 +225,31 @@ describe('search actions', () => {
 						artists:["Muse"],
 						id:"4VqPOruhp5EdPBeR92t6lQ",
 						album:"The Resistance",
+						"albumId": "0eFHYz8NmK75zSplL5qlfM",
 					},	
 					{
 						name:"Starlight",
 						artists:["Muse"],
 						id:"3skn2lauGk7Dx6bVIt5DVj",
 						album:"Black Holes And Revelations",
+						"albumId": "0lw68yx3MhKflWFqCsGkIs",
 					},
 					{
 						name:"Supermassive Black Hole",
 						artists:["Muse"],
 						id:"3lPr8ghNDBLc2uZovNyLs9",
 						album:"Black Holes And Revelations",
+						"albumId": "0lw68yx3MhKflWFqCsGkIs",
 					},
 				]
 			}
+		})
+	})
+
+	it('errorSearch should create ERROR_SEARCH action', () => {
+		expect(actions.errorSearch('Cant load search results')).toEqual({
+			type:'ERROR_SEARCH',
+			error:'Cant load search results'
 		})
 	})
 })	

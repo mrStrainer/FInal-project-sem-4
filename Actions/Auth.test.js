@@ -14,4 +14,11 @@ describe('login actions', () => {
 			type:'LOGOUT'
 		})
 	})
+
+	it('errorAuth should create ERROR_AUTH action', () => {
+		expect(actions.errorAuth('Cant log in')).toEqual({
+			type:'ERROR_AUTH',
+			error:'Cant log in'
+		})
+	})
 })

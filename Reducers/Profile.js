@@ -13,6 +13,11 @@ const profile = (state = {
 				isFetching:false,
 				profile:action.profile
 			}
+		case 'ERROR_PROFILE':
+			return {
+				...state, 
+				isFetching:false,
+			}
 		default:
 			return state;
 	}

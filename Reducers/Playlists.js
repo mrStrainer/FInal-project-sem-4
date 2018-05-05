@@ -36,6 +36,12 @@ const playlists = (state = {
 				...state,
 				isFetchingMore:false
 			}
+		case 'ERROR_PLAYLISTS':
+			return {
+				...state, 
+				isFetching:false,
+				isFetchingMore:false,
+			}
 		default:
 			return state;
 	}

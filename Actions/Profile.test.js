@@ -28,4 +28,11 @@ describe('Profile actions', () => {
 		})
 	})
 
+	it('errorProfile should create ERROR_PROFILE action', () => {
+		expect(actions.errorProfile('Cant load profile')).toEqual({
+			type:'ERROR_PROFILE',
+			error:'Cant load profile'
+		})
+	})
+
 })

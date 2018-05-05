@@ -2,7 +2,7 @@ import { json, status, createHeader } from './Helpers'
 
 export const REQUEST_ARTIST = 'REQUEST_ARTIST'
 export const RECEIVE_ARTIST = 'RECEIVE_ARTIST'
-
+export const ERROR_ARTIST = 'ERROR_ARTIST'
 export const requestArtist = artistId => ({
 	type:REQUEST_ARTIST,
 	artistId
@@ -11,6 +11,11 @@ export const requestArtist = artistId => ({
 export const receiveArtist = artist => ({
 	type:RECEIVE_ARTIST,
 	artist, 
+})
+
+export const errorArtist = error => ({
+	type:ERROR_ARTIST,
+	error
 })
 
 const artistResponse = artist => ({
@@ -34,7 +39,10 @@ const fetchArtist = (artistId, token) => dispatch => {
  		.then(status)
  		.then(artistResponse)
  		.then(artist => dispatch(receiveArtist(artist)))
- 		.catch(error => console.log(error, artistId))
+ 		.catch(error => {
+ 			dispatch(errorArtist(error))
+ 			console.log(error, artistId)
+ 		})
 }
 
 const shouldFetchArtist = (state, artistId) => {

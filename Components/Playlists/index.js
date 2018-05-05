@@ -24,10 +24,11 @@ const PlaylistItem = ({ name, id, isPublic, total_tracks, owner }) => {
 		
 	)
 }
-const PlaylistHeader = ({ id }) => {
+const PlaylistHeader = ({ id, total }) => {
 	return (
-		<View style={Styles.center}>
-			<Text style={Styles.headerText}>Playlists - {id}</Text>
+		<View style={Styles.Header}>
+			<Text style={Styles.headerText}>{id}</Text>
+			<Text style={Styles.headerSubText}>{`${total}`}</Text>
 		</View>	
 	)
 }
@@ -36,10 +37,10 @@ export default class Playlist extends React.Component {
 		this.props.fetchPlaylists(this.props.match.params.userId);
 	}
 	// link to playlists
-	// ui for playlist item
+	// ui for single playlist
 
 	render () {
-		const { isFetching, isFetchingMore, playlists, id } = this.props.playlists;
+		const { isFetching, isFetchingMore, playlists, id, total } = this.props.playlists;
 		const { fetchMorePlaylists } = this.props;
 		if (playlists && !isFetching){
 			return (
@@ -48,7 +49,7 @@ export default class Playlist extends React.Component {
 						onEndReachedThreshold={0.3}
 						onEndReached={() => fetchMorePlaylists()}
 				        data={playlists}
-				        ListHeaderComponent={<PlaylistHeader id={id}/>}
+				        ListHeaderComponent={<PlaylistHeader id={id} total={total}/>}
 				        ListFooterComponent={<ShowLoader isFetching={isFetchingMore}/>}
 				        keyExtractor={(item,i) => `${i}-${item.id}`}
 				        renderItem={({item}, i) => <PlaylistItem {...item} />}

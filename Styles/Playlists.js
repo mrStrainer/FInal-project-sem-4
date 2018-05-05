@@ -12,9 +12,25 @@ const Styles = StyleSheet.create({
         justifyContent: 'center',
         padding:10,
     },
+    Header: {
+        flex: 1,
+        flexDirection:'row',
+        backgroundColor:'#282828',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding:10,
+        marginBottom:7,
+    },
     headerText: {
     	fontSize:20,
     	color:'#ccc',
+    },
+    headerSubText:{
+        paddingLeft:4,
+        paddingTop:5,
+        color:'#ccc',
+        fontSize:14,
+        opacity:0.7,
     },
     Text: {
     	color:'#ccc',
