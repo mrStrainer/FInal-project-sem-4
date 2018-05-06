@@ -11,6 +11,7 @@ import Playlists from './Containers/Playlists'
 import Artist from './Containers/Artist'
 import Search from './Containers/Search'
 import NavBar from './Containers/NavBar'
+import SinglePlaylist from './Containers/SinglePlaylist'
 
 //ignore warnings until fix
 import { YellowBox } from 'react-native';
@@ -35,9 +36,10 @@ export default class App extends React.Component {
                             <Route exact path="/album/" component={Album}/>
                             <Route path="/album/:albumId" component={Album}/>
                             <Route path="/profile/:profileId" component={Profile}/>
-                            <Route path="/playlist/:userId" component={Playlists}/>
-                            <Route path="/playlist/me" component={Playlists}/>
+                            <Route path="/playlists/:userId" component={Playlists}/>
+                            <Route path="/playlists/me" component={Playlists}/>
                             <Route path="/artist/:artistId" component={Artist}/>
+                            <Route path ='/playlist/:userId/:playlistId' component={SinglePlaylist} />
                             </Switch>
                         </View>
                     </View>
