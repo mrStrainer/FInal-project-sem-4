@@ -6,6 +6,7 @@ import auth from './Auth'
 import profile from './Profile'
 import playlists from './Playlists'
 import artist from './Artist'
+import SinglePlaylist from './SinglePlaylist'
 
 const rootReducer = combineReducers({
 	album,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
 	profile,
 	playlists,
 	artist,
+	currentPlaylist:SinglePlaylist,
 	//router: routerReducer
 })
 

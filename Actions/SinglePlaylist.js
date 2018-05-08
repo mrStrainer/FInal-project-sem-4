@@ -5,7 +5,9 @@ const REQUEST_SINGLE_PLAYLIST_TRACKS = 'REQUEST_SINGLE_PLAYLIST_TRACKS'
 const RECEIVE_SINGLE_PLAYLIST_TRACKS = 'RECEIVE_SINGLE_PLAYLIST_TRACKS'
 const REQUEST_MORE_SINGLE_PLAYLIST_TRACKS = 'REQUEST_MORE_SINGLE_PLAYLIST_TRACKS'
 const RECEIVE_MORE_SINGLE_PLAYLIST_TRACKS = 'RECEIVE_MORE_SINGLE_PLAYLIST_TRACKS'
+const RECEIVE_NO_SINGLE_PLAYLIST_INFO = 'RECEIVE_NO_SINGLE_PLAYLIST_INFO'
 const RECEIVE_NO_SINGLE_PLAYLIST_TRACKS = 'RECEIVE_NO_SINGLE_PLAYLIST_TRACKS'
+const RECEIVE_NO_MORE_SINGLE_PLAYLIST_TRACKS = 'RECEIVE_NO_MORE_SINGLE_PLAYLIST_TRACKS'
 const ERROR_SINGLE_PLAYLIST = 'ERROR_SINGLE_PLAYLIST'
 
 // TODO
@@ -36,18 +38,28 @@ export const requestMoreSinglePlaylistTracks = () => ({
 	type:REQUEST_MORE_SINGLE_PLAYLIST_TRACKS,
 })
 
-export const receiveMoreSinglePlaylistTracks = (tracks) => ({
+export const receiveMoreSinglePlaylistTracks = tracks => ({
 	type:RECEIVE_MORE_SINGLE_PLAYLIST_TRACKS,
 	tracks
 })
 
-export const receiveNoSinglePlaylistTracks = () => ({
+export const receiveNoSinglePlaylistInfo = error => ({
+	type:RECEIVE_NO_SINGLE_PLAYLIST_INFO,
+	error,
+})
+
+export const receiveNoSinglePlaylistTracks = error => ({
 	type:RECEIVE_NO_SINGLE_PLAYLIST_TRACKS,
+	error,
+})
+
+export const receiveNoMoreSinglePlaylistTracks = () => ({
+	type:RECEIVE_NO_MORE_SINGLE_PLAYLIST_TRACKS,
 })
 
 export const errorSinglePlaylist = error => ({
 	type:ERROR_SINGLE_PLAYLIST,
-	error
+	error,
 })
 
 const singlePlaylistInfoResponse = responseSinglePlaylistInfo => {
@@ -59,20 +71,20 @@ const singlePlaylistInfoResponse = responseSinglePlaylistInfo => {
 		description,
 		owner:owner.id,
 		followers:followers.total,
-		total:tracks.total
+		total:tracks.total,
+		offset:tracks.offset
 	}
 }
 
 const singlePlaylistTracksResponse = responseSinglePlaylistTracks => {
 	const { offset, items } = responseSinglePlaylistTracks;
 	const tracks = items.map(item => {
-		const { added_by, added_at, track } = item;
+		const { added_at, track } = item;
 		return {
 			id:track.id,
 			name:track.name,
 			duration_ms:track.duration_ms,
 			added_at,
-			added_by,
 			album:{
 				id: track.album.id,
 				name:track.album.name
@@ -98,13 +110,13 @@ const singlePlaylistTracksResponse = responseSinglePlaylistTracks => {
 export const fetchSinglePlaylistInfo = (userId, playlistId) => (dispatch, getState) => {
 	const { token } = getState().auth; 
 	dispatch(requestSinglePlaylistInfo(userId, playlistId));
-	return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}?fields=${encodeURIComponent(`id,name,description,followers(total),owner(id),tracks(total)`)}`, createHeader('GET', token))
+	return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}?fields=${encodeURIComponent(`id,name,description,followers(total),owner(id),tracks(total, offset)`)}`, createHeader('GET', token))
 		.then(json)
 		.then(status)
 		.then(singlePlaylistInfoResponse)
 		.then(playlistInfo => dispatch(receiveSinglePlaylistInfo(playlistInfo)))
 		.catch(error => {
-			dispatch(errorSinglePlaylist(error))
+			dispatch(receiveNoSinglePlaylistInfo(error))
 			console.log(error)
 		})
 }
@@ -118,25 +130,31 @@ export const fetchSinglePlaylistTracks = (userId, playlistId) => (dispatch, getS
 		.then(singlePlaylistTracksResponse)
 		.then(playlistTracks => dispatch(receiveSinglePlaylistTracks(playlistTracks)))
 		.catch(error => {
-			dispatch(errorSinglePlaylist(error))
+			dispatch(receiveNoSinglePlaylistTracks(error))
 			console.log(error)
 		})
 }
 
+export const fetchSinglePlaylist = (userId, playlistId) => (dispatch, getState) =>{
+	dispatch(fetchSinglePlaylistInfo(userId,playlistId))
+	dispatch(fetchSinglePlaylistTracks(userId,playlistId))
+}
+//owner, total, id, offset to info
 export const fetchMoreSinglePlaylistTracks = () => (dispatch, getState) => {
 	const { token } = getState().auth; 
-	const { id, owner, total, offset } = getState().currentPlaylist;
+	const { info } = getState().currentPlaylist;
+
 	dispatch(requestMoreSinglePlaylistTracks());
-	if (offset > total) {
-		return dispatch(receiveNoPlaylistTracks());
+	if (info.offset > info.total) {
+		return dispatch(receiveNoMoreSinglePlaylistTracks());
 	}
-	return fetch(`https://api.spotify.com/v1/users/${owner.id}/playlists/${id}/tracks?fields=${encodeURIComponent(`offset,items(added_at,track(id,name,duration_ms,album(id,name),artists(id,name)))`)}&limit=15&offset=${offset+15}`, createHeader('GET', token))
+	return fetch(`https://api.spotify.com/v1/users/${info.owner}/playlists/${info.id}/tracks?fields=${encodeURIComponent(`offset,items(added_at,track(id,name,duration_ms,album(id,name),artists(id,name)))`)}&limit=15&offset=${info.offset+15}`, createHeader('GET', token))
 		.then(json)
 		.then(status)
 		.then(singlePlaylistTracksResponse)
-		.then(playlistTracks => dispatch(receiveMorePlaylistTracks(playlistTracks)))
+		.then(playlistTracks => dispatch(receiveMoreSinglePlaylistTracks(playlistTracks)))
 		.catch(error => {
-			dispatch(errorSinglePlaylist(error))
+			dispatch(receiveNoMoreSinglePlaylistTracks())
 			console.log(error)
 		})
 }
