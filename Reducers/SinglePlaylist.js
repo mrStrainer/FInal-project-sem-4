@@ -2,6 +2,7 @@ const currentPlaylist = (state = {
 	isFetchingInfo:false,
 	isFetchingTracks:false,
 	isFetchingMoreTracks:false,
+	tracks:[]
 }, action) => {
 	switch (action.type) {
 		case 'REQUEST_SINGLE_PLAYLIST_INFO':

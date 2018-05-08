@@ -145,7 +145,7 @@ export const fetchMoreSinglePlaylistTracks = () => (dispatch, getState) => {
 	const { info } = getState().currentPlaylist;
 
 	dispatch(requestMoreSinglePlaylistTracks());
-	if (info.offset > info.total) {
+	if (info.offset >= info.total) {
 		return dispatch(receiveNoMoreSinglePlaylistTracks());
 	}
 	return fetch(`https://api.spotify.com/v1/users/${info.owner}/playlists/${info.id}/tracks?fields=${encodeURIComponent(`offset,items(added_at,track(id,name,duration_ms,album(id,name),artists(id,name)))`)}&limit=15&offset=${info.offset+15}`, createHeader('GET', token))

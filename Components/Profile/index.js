@@ -24,7 +24,7 @@ export default class Profile extends React.Component {
 						<Text style={Styles.headerText}>{profile.name}</Text>
 						<Text style={Styles.text}>{profile.id}</Text>
 						<Text style={Styles.text}>{profile.followers}</Text>
-						<StyledLink to={`/playlist/${profile.id}`} text='Playlists'/>
+						<StyledLink to={`/playlists/${profile.id}`} text='Playlists'/>
 					</View>
 				</View>
 		    )

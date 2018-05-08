@@ -37,6 +37,10 @@ const Styles = StyleSheet.create({
         maxWidth:285,
         fontSize:16
     },
+    ContainerText: {
+        color:'#ccc',
+        maxWidth:345,
+    },
     sText: {
         fontSize:12,
     },

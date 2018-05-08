@@ -4,34 +4,24 @@ import { Link } from 'react-router-native';
 import Styles from '../../Styles/Playlists'
 import ShowLoader from '../ShowLoader'
 import Login from '../Login' 
-		// name:playlist.name,
-		// id:playlist.id,
-		// public:playlist.public,
-		// total_tracks:playlist.tracks.total,
-		// owner: playlist.owner.id,
-const PlaylistItem = ({ name, id, isPublic, total_tracks, owner }) => {
-	return (
-		<View style={Styles.ItemContainer}>
-			<View style={Styles.ItemView}>
-				<Text style={Styles.Text} numberOfLines={1} ellipsizeMode='tail'>{name}</Text>
-				<Text style={Styles.oText}>{total_tracks}</Text>
-			</View>
-			<View style={Styles.ItemSubView}>
-				<Text style={ [Styles.Text, Styles.sText]} numberOfLines={1} ellipsizeMode='tail'>{owner}</Text>
-				<Text style={Styles.oText}>{isPublic && 'Public'}</Text>
-			</View>
-		</View>
-		
-	)
-}
-const PlaylistHeader = ({ id, total }) => {
-	return (
-		<View style={Styles.Header}>
-			<Text style={Styles.headerText}>{id}</Text>
-			<Text style={Styles.headerSubText}>{`${total}`}</Text>
-		</View>	
-	)
-}
+import withResults from '../withResultsHOC'
+import withSpinner from '../withSpinnerHOC'
+import PlaylistHeader from './Header'
+import PlaylistItem from './Item'
+
+const PlaylistsResult = ({ playlists, fetchMorePlaylists, userId }) => 
+	<FlatList 
+		onEndReachedThreshold={0.3}
+		onEndReached={() => fetchMorePlaylists()}
+        data={playlists.playlists}
+        ListHeaderComponent={<PlaylistHeader id={playlists.id} total={playlists.total}/>}
+        ListFooterComponent={<ShowLoader isFetching={playlists.isFetchingMore}/>}
+        keyExtractor={(item,i) => `${i}-${item.id}`}
+        renderItem={({item}, i) => <PlaylistItem {...item} userId={userId}/>}
+    />
+const PlaylistsResultWithSpinner = withSpinner(PlaylistsResult);
+const PlaylistsResultWithCheckAndSpinner = withResults(PlaylistsResultWithSpinner);
+
 export default class Playlist extends React.Component {
 	componentDidMount() {
 		this.props.fetchPlaylists(this.props.match.params.userId);
@@ -45,15 +35,7 @@ export default class Playlist extends React.Component {
 		if (playlists && !isFetching){
 			return (
 				<View style={Styles.playlistContainer}>
-					<FlatList 
-						onEndReachedThreshold={0.3}
-						onEndReached={() => fetchMorePlaylists()}
-				        data={playlists}
-				        ListHeaderComponent={<PlaylistHeader id={id} total={total}/>}
-				        ListFooterComponent={<ShowLoader isFetching={isFetchingMore}/>}
-				        keyExtractor={(item,i) => `${i}-${item.id}`}
-				        renderItem={({item}, i) => <PlaylistItem {...item} />}
-				    />
+					<PlaylistsResultWithCheckAndSpinner results={this.props.playlists.playlists} message={'No playlists'} {...this.props} userId={this.props.match.params.userId}/>
 				</View>
 		    )
 		}

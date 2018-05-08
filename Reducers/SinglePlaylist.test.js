@@ -7,7 +7,8 @@ describe('SinglePlaylist reducer', () => {
 		).toEqual({
 			isFetchingInfo:false,
 			isFetchingTracks:false,
-			isFetchingMoreTracks:false
+			isFetchingMoreTracks:false,
+			tracks:[]
 		})
 	})
 
@@ -19,7 +20,8 @@ describe('SinglePlaylist reducer', () => {
 		).toEqual({
 			isFetchingInfo:true,
 			isFetchingTracks:false,
-			isFetchingMoreTracks:false
+			isFetchingMoreTracks:false,
+			tracks:[]
 		})
 	})
 
@@ -28,14 +30,16 @@ describe('SinglePlaylist reducer', () => {
 			SinglePlaylist({
 				isFetchingInfo:true,
 				isFetchingTracks:false,
-				isFetchingMoreTracks:false
+				isFetchingMoreTracks:false,
+				tracks:[]
 			},{
 				type:'REQUEST_SINGLE_PLAYLIST_INFO'
 			})
 		).toEqual({
 			isFetchingInfo:true,
 			isFetchingTracks:false,
-			isFetchingMoreTracks:false
+			isFetchingMoreTracks:false,
+			tracks:[]
 		})
 	})
 
