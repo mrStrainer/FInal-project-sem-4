@@ -74,12 +74,12 @@ export default class Search extends React.Component {
 			<View style={Styles.componentContainer}>
 				<SearchInput value={this.state.searchQ} onChangeText={(text) => this.setState({searchQ:text})} onSubmitEditing={() => searchNew(this.state.searchQ)}/>
 				
-				{typeSelect.map((route, index) => <Route exact={true} key={index} path={route.path} render={()=> <TypeMenu selected={index} />}/> )}
+				{typeSelect.map((route, index) => <Route exact={true} key={index} path={route.path} render={() => <TypeMenu selected={index} />}/> )}
 				<View style={Styles.ResultsContainer}>
 					{typeSelect.map(
 						(route, index) => 
 							<Route exact={true} key={index} path={route.path} render={
-								(props) => <SearchResultsWithCheckAndSpinner {...this.props.search} type={route.type} message={'Search for something'} searchMore={searchMore}/>}
+								() => <SearchResultsWithCheckAndSpinner {...this.props.search} type={route.type} message={'Search for something'} searchMore={searchMore}/>}
 							/> 
 					)}
                 </View>

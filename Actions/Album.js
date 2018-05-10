@@ -30,14 +30,7 @@ const albumResponse = album => ({
 
 const fetchAlbum = (albumId, token) => dispatch => {
 	dispatch(requestAlbum(albumId));
- 	return fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
-			method: `GET`,
-			headers: {
-				"Accept": "application/json",
-				"Content-Type": "application/json",
-				"Authorization": `Bearer ${token}`
-			}
-		})
+ 	return fetch(`https://api.spotify.com/v1/albums/${albumId}`,  createHeader('GET', token))
  		.then(json)
  		.then(status)
  		.then(albumResponse)

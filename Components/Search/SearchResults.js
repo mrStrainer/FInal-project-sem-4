@@ -3,7 +3,7 @@ import { FlatList, ActivityIndicator, View, Text } from 'react-native'
 import Styles from '../../Styles/Search'
 import SearchItem from './SearchItem'
 import ShowLoader from '../ShowLoader'
-class SearchResults extends React.Component {
+export default class SearchResults extends React.Component {
 	render() {
 		const { type, albums, artists, tracks, searchQ, isFetchingMore, searchMore } = this.props;
 		const foundAlbums = albums.total > 0 && searchQ;
@@ -29,4 +29,3 @@ class SearchResults extends React.Component {
 		)
 	}
 }
-export default SearchResults;

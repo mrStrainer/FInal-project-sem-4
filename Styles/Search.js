@@ -35,14 +35,6 @@ const Styles = StyleSheet.create({
 		flexDirection:'row',
         justifyContent:'space-around',
         backgroundColor:'#282828',
-        // marginBottom:5,
-        // shadowColor:'#181818',
-        // shadowOffset: { 
-        //    width:0, 
-        //    height:5.1
-        // },
-        // shadowOpacity:0.2,
-        // elevation:2,
 	},
 	Selected: {
 		height:40,

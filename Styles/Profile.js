@@ -17,6 +17,10 @@ const Styles = StyleSheet.create({
     	fontSize:20,
     	color:'#ccc',
     },
+    headerImage:{
+        width:160,
+        height:160,
+    },
     text: {
     	color:'#ccc'
     }
