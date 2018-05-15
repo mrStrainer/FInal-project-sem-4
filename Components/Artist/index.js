@@ -4,6 +4,7 @@ import ArtistHeader from "./Header";
 import Styles from '../../Styles/Artist'
 import ShowLoader from '../ShowLoader'
 import { Route, Link } from 'react-router-native';
+import ArtistResults from './ArtistResults'
 // general info
 // top tracks
 // albums
@@ -27,26 +28,19 @@ const TypeMenu = ({ selected = 0, artistId }) => {
 const typeSelect = [
     {
         path:'/artist/:artistId/',
+        type:'TopTracks'
     },{
         path:'/artist/:artistId/albums',
+        type:'ArtistAlbums'
     },{
         path:'/artist/:artistId/related',
+        type:'RelatedArtists'
     },
 ]
 export default class artist extends React.Component {
     componentDidMount() {
-        this.props.fetchArtistIfNeeded(this.props.match.params.artistId)
+        this.props.fetchArtist(this.props.match.params.artistId)
     }
-
-    // ListHeaderComponent={<artistHeader url={artist.image.url} name={artist.name} artist={artist.artist}/>}
-
-    // <FlatList 
-    //     style={Styles.artistTracks}
-    //     data={artist.tracks}
-    //     ListFooterComponent={<ShowLoader isFetching={isFetching}/>}
-    //     keyExtractor={(item,i) => `${i}-${item.id}`}
-    //     renderItem={({item}, i) => <Track tracknr={item.track_number} duration={item.duration_ms} name={item.name} last={i === artist.tracks.length-1 ? true : false}/>}
-    // />
     render() {
         const { artist, isFetching } = this.props.artist;
         if (artist && !isFetching) {
@@ -54,7 +48,13 @@ export default class artist extends React.Component {
                 <View style={Styles.artistContainer}>
                     <ArtistHeader {...artist}/>
                     {typeSelect.map((route, index) => <Route exact={true} key={index} path={route.path} render={() => <TypeMenu selected={index} id={this.props.match.params.artistId}/>}/> )}
-                    <View style={{flex:1}}> </View>
+                    <View style={{flex:1}}> 
+                        {typeSelect.map((route, index) => <Route exact={true} key={`${index}-list`} path={route.path} render={
+                            () => 
+                                <ArtistResults type={route.type}  {...this.props.artist}/>
+                            }/> 
+                        )}
+                    </View>
                 </View>       
             )
         } 

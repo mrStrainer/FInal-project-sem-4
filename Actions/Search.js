@@ -27,6 +27,7 @@ export const receiveMoreSearch = (searchType,results) => ({
 	searchType,
 	results
 })
+
 export const receiveNoResult = () => ({
 	type:RECEIVE_NO_RESULT,
 })

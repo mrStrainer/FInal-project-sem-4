@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchArtistIfNeeded } from '../Actions/'
+import { fetchArtist, fetchMoreArtistAlbums } from '../Actions/'
 import Artist from '../Components/Artist/' 
 
 function mapStateToProps(state) {
@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({fetchArtistIfNeeded}, dispatch);
+	return bindActionCreators({ fetchArtist ,fetchMoreArtistAlbums }, dispatch);
 }
 
 const ArtistContainer = connect(mapStateToProps,mapDispatchToProps)(Artist);

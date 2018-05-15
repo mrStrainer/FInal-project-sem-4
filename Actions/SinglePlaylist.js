@@ -135,7 +135,7 @@ export const fetchSinglePlaylistTracks = (userId, playlistId) => (dispatch, getS
 		})
 }
 
-export const fetchSinglePlaylist = (userId, playlistId) => (dispatch, getState) =>{
+export const fetchSinglePlaylist = (userId, playlistId) => (dispatch, getState) => {
 	dispatch(fetchSinglePlaylistInfo(userId,playlistId))
 	dispatch(fetchSinglePlaylistTracks(userId,playlistId))
 }

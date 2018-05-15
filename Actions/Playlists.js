@@ -7,9 +7,6 @@ const RECEIVE_MORE_PLAYLISTS = 'RECEIVE_MORE_PLAYLISTS'
 const RECEIVE_NO_PLAYLISTS = 'RECEIVE_NO_PLAYLISTS'
 const ERROR_PLAYLISTS = 'ERROR_PLAYLISTS'
 
-// TODO
-// REDUCERS, playlist ui
-
 export const requestPlaylists = id => ({
 	type: REQUEST_PLAYLISTS,
 	id

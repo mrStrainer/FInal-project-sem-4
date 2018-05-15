@@ -20,7 +20,7 @@ export const SingleAlbum = ({ id, name, artist, image }) => {
 		</View>
 	)
 }
-const SingleArtist= ({ id, name, image }) => {
+export const SingleArtist = ({ id, name, image }) => {
 	let source = Placeholder;
 	if (image)
 		source = { uri : image.url };
@@ -35,7 +35,7 @@ const SingleArtist= ({ id, name, image }) => {
 		</View>
 	)
 }
-const SingleTrack = ({ id, name, artists, album, albumId }) => {
+export const SingleTrack = ({ id, name, artists, album, albumId }) => {
 	return (
 		<View style={Styles.searchItem}>
 			<Link to={`/album/${albumId}?highlight=${id}`}>
@@ -47,7 +47,7 @@ const SingleTrack = ({ id, name, artists, album, albumId }) => {
 		</View>
 	)
 }
-const SearchItem = ({ type, ...props}) => {
+const SearchItem = ({ type, ...props }) => {
 	switch(type) {
 		case 'albums':
 			return <SingleAlbum {...props}/>
