@@ -10,16 +10,16 @@ import ArtistResults from './ArtistResults'
 // albums
 // related artists
 
-const TypeMenu = ({ selected = 0, artistId }) => {
+const TypeMenu = ({ selected = 0, id }) => {
     return (
         <View style={Styles.TypeMenu}>
-            <Link to={`/artist/${artistId}/`} style={selected === 0? Styles.Selected : Styles.NotSelected}>
+            <Link to={`/artist/${id}/`} style={selected === 0? Styles.Selected : Styles.NotSelected}>
                 <Text style={Styles.Text}>Top Tracks</Text>
             </Link>
-            <Link to={`/artist/${artistId}/albums`} style={selected === 1? Styles.Selected : Styles.NotSelected}>
+            <Link to={`/artist/${id}/albums`} style={selected === 1? Styles.Selected : Styles.NotSelected}>
                 <Text style={Styles.Text}>Albums</Text>
             </Link>
-            <Link to={`/artist/${artistId}/related`}  style={selected === 2? Styles.Selected : Styles.NotSelected}>
+            <Link to={`/artist/${id}/related`}  style={selected === 2? Styles.Selected : Styles.NotSelected}>
                 <Text style={Styles.Text}>Related</Text>
             </Link>
         </View>
@@ -39,6 +39,7 @@ const typeSelect = [
 ]
 export default class artist extends React.Component {
     componentDidMount() {
+        ///location?
         this.props.fetchArtist(this.props.match.params.artistId)
     }
     render() {
@@ -46,12 +47,12 @@ export default class artist extends React.Component {
         if (artist && !isFetching) {
             return (
                 <View style={Styles.artistContainer}>
-                    <ArtistHeader {...artist}/>
+                    <ArtistHeader {...artist} location={this.props.location}/>
                     {typeSelect.map((route, index) => <Route exact={true} key={index} path={route.path} render={() => <TypeMenu selected={index} id={this.props.match.params.artistId}/>}/> )}
-                    <View style={{flex:1}}> 
+                    <View style={{flex:1, padding:10, paddingBottom:0}}> 
                         {typeSelect.map((route, index) => <Route exact={true} key={`${index}-list`} path={route.path} render={
                             () => 
-                                <ArtistResults type={route.type}  {...this.props.artist}/>
+                                <ArtistResults type={route.type}  {...this.props.artist} fetchArtist={this.props.fetchArtist}/>
                             }/> 
                         )}
                     </View>

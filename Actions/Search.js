@@ -63,10 +63,18 @@ export const trackResponse = responseTracks => {
 	const { items } = responseTracks;
 	const tracks = items.map(track => ({
 		name:track.name,
-		artists:track.artists.map(artist => artist.name),
+		artists:track.artists.map(artist => {
+			const { name, id } = artist;
+			return {
+				name,
+				id
+			}
+		}),
 		id:track.id,
-		album:track.album.name,
-		albumId:track.album.id,
+		album:{
+			name:track.album.name,
+			id:track.album.id,
+		}
 	}));
 	return tracks;
 }

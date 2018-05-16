@@ -21,16 +21,16 @@ const ArtistAlbums = ({ albums, isFetchingMoreAlbums}) =>
 	    renderItem={({item}, i) => <SingleAlbum {...item}/>}
 	/>
 
-const RelatedArtists = ({ relatedArtists, isFetchingRelated}) => 
+const RelatedArtists = ({ relatedArtists, isFetchingRelated, fetchArtist}) => 
 	<FlatList 
 	    style={Styles.artistTracks}
 	    data={relatedArtists}
 	    ListFooterComponent={<ShowLoader isFetching={isFetchingRelated}/>}
 	    keyExtractor={(item,i) => `${i}-${item.id}`}
-	    renderItem={({item}, i) => <SingleArtist {...item}/>}
+	    renderItem={({item}, i) => <SingleArtist {...item} fetchArtist={fetchArtist}/>}
 	/>
 
-const ArtistResults = ({ type, ...props }) => {
+const ArtistResults = ({ type, location, ...props }) => {
 	switch(type) {
 		case 'TopTracks':
 			return <TopTracks {...props}/>
