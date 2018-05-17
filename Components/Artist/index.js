@@ -44,10 +44,10 @@ export default class artist extends React.Component {
     }
     render() {
         const { artist, isFetching } = this.props.artist;
-        if (artist && !isFetching) {
+        //if (artist && !isFetching) {
             return (
                 <View style={Styles.artistContainer}>
-                    <ArtistHeader {...artist} location={this.props.location}/>
+                    <ArtistHeader {...artist} isFetching={isFetching}/>
                     {typeSelect.map((route, index) => <Route exact={true} key={index} path={route.path} render={() => <TypeMenu selected={index} id={this.props.match.params.artistId}/>}/> )}
                     <View style={{flex:1, padding:10, paddingBottom:0}}> 
                         {typeSelect.map((route, index) => <Route exact={true} key={`${index}-list`} path={route.path} render={
@@ -58,7 +58,7 @@ export default class artist extends React.Component {
                     </View>
                 </View>       
             )
-        } 
+        //} 
         return <Text style={{color:'#ccc'}}>Cant find artist</Text>
     }
 }
