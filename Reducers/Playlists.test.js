@@ -6,6 +6,7 @@ describe('playlists reducer', () => {
 			playlists(undefined,{})
 		).toEqual({
 			isFetching: false,
+			playlists:[]
 		})
 	})
 

@@ -9,12 +9,10 @@ export default class SinglePlaylist extends React.Component {
 	}
 	render () {
 		const { playlist, fetchMoreSinglePlaylistTracks } = this.props;
-		if(playlist && playlist.info)
-			return (
-				<View style={Styles.playlistContainer}>		
-					<Results results={playlist.tracks} {...this.props} message={'No playlist'} isFetching={playlist.isFetchingInfo || playlist.isFetchingTracks}/>
-				</View>
-			)
-		return <Text style={{color:'#ccc'}}>Something went wrong</Text>
+		return (
+			<View style={Styles.playlistContainer}>		
+				<Results results={playlist.tracks} {...this.props} message={'No playlist'} isFetching={playlist.isFetchingInfo || playlist.isFetchingTracks}/>
+			</View>
+		)
 	}
 }

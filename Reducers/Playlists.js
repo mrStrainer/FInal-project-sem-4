@@ -1,5 +1,6 @@
 const playlists = (state = {
 	isFetching:false,
+	playlists:[]
 }, action) => {
 	switch (action.type) {
 		case 'REQUEST_PLAYLISTS':

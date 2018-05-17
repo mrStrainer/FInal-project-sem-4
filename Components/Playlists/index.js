@@ -27,19 +27,14 @@ export default class Playlist extends React.Component {
 	componentDidMount() {
 		this.props.fetchPlaylists(this.props.match.params.userId);
 	}
-	// link to playlists
-	// ui for single playlist
 
 	render () {
 		const { isFetching, isFetchingMore, playlists, id, total } = this.props.playlists;
 		const { fetchMorePlaylists } = this.props;
-		if (playlists && !isFetching){
-			return (
-				<View style={Styles.playlistContainer}>
-					<PlaylistsWithResultsAndSpinner results={this.props.playlists.playlists} message={'No playlists'} {...this.props} userId={this.props.match.params.userId}/>
-				</View>
-		    )
-		}
-		return <Text style={{color:'#ccc'}}>No playlists</Text>
+		return (
+			<View style={Styles.playlistContainer}>
+				<PlaylistsWithResultsAndSpinner isFetching={isFetching} results={this.props.playlists.playlists} message={'No playlists'} {...this.props} userId={this.props.match.params.userId}/>
+			</View>
+	    )
 	}
 }

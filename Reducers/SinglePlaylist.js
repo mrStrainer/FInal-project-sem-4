@@ -2,6 +2,7 @@ const currentPlaylist = (state = {
 	isFetchingInfo:false,
 	isFetchingTracks:false,
 	isFetchingMoreTracks:false,
+	info:{},
 	tracks:[]
 }, action) => {
 	switch (action.type) {

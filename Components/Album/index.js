@@ -28,11 +28,10 @@ export default class Album extends React.Component {
     }
     render() {
         const { album, isFetching } = this.props.album;
-            return (
-                <View style={Styles.albumContainer}>
-                    <AlbumWithResultsAndSPinner results={this.props.album.album} message={'No album'} {...this.props.album} highlight={this.props.location.search.slice(11,33)}/>
-                </View>       
-            )
-        return <Text style={{color:'#ccc'}}>Cant find album</Text>
+        return (
+            <View style={Styles.albumContainer}>
+                <AlbumWithResultsAndSPinner results={this.props.album.album} message={'No album'} {...this.props.album} highlight={this.props.location.search.slice(11,33)}/>
+            </View>       
+        )
     }
 }
