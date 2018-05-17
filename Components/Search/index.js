@@ -58,9 +58,8 @@ const typeSelect = [
 		type:'tracks'
 	},
 ]
-
-const SearchResultsWithSpinner = withSpinner(SearchResults);
-const SearchResultsWithCheckAndSpinner = withResults(SearchResultsWithSpinner);
+const SearchWithResults = withResults(SearchResults);
+const SearchWithResultsAndSpinner = withSpinner(SearchWithResults);
 
 export default class Search extends React.Component {
 	state = {
@@ -79,7 +78,7 @@ export default class Search extends React.Component {
 					{typeSelect.map(
 						(route, index) => 
 							<Route exact={true} key={index} path={route.path} render={
-								() => <SearchResultsWithCheckAndSpinner {...this.props.search} type={route.type} message={'Search for something'} searchMore={searchMore}/>}
+								() => <SearchWithResultsAndSpinner {...this.props.search} type={route.type} message={'Search for something'} searchMore={searchMore}/>}
 							/> 
 					)}
                 </View>

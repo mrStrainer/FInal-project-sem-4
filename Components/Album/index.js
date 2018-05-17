@@ -19,9 +19,8 @@ const AlbumResult = ({ album, highlight }) => {
         />
     )
 } 
-
-const AlbumResultWithSpinner = withSpinner(AlbumResult);
-const AlbumResultWithCheckAndSpinner = withResults(AlbumResultWithSpinner);
+const AlbumWithResults = withResults(AlbumResult);
+const AlbumWithResultsAndSPinner = withSpinner(AlbumWithResults);
 
 export default class Album extends React.Component {
     componentDidMount() {
@@ -31,7 +30,7 @@ export default class Album extends React.Component {
         const { album, isFetching } = this.props.album;
             return (
                 <View style={Styles.albumContainer}>
-                    <AlbumResultWithCheckAndSpinner results={this.props.album.album} message={'No album'} {...this.props.album} highlight={this.props.location.search.slice(11,33)}/>
+                    <AlbumWithResultsAndSPinner results={this.props.album.album} message={'No album'} {...this.props.album} highlight={this.props.location.search.slice(11,33)}/>
                 </View>       
             )
         return <Text style={{color:'#ccc'}}>Cant find album</Text>

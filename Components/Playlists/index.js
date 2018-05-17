@@ -19,8 +19,9 @@ const PlaylistsResult = ({ playlists, fetchMorePlaylists, userId }) =>
         keyExtractor={(item,i) => `${i}-${item.id}`}
         renderItem={({item}, i) => <PlaylistItem {...item} userId={userId}/>}
     />
-const PlaylistsResultWithSpinner = withSpinner(PlaylistsResult);
-const PlaylistsResultWithCheckAndSpinner = withResults(PlaylistsResultWithSpinner);
+
+const PlaylistsWithResults = withResults(PlaylistsResult);
+const PlaylistsWithResultsAndSpinner = withSpinner(PlaylistsWithResults);
 
 export default class Playlist extends React.Component {
 	componentDidMount() {
@@ -35,7 +36,7 @@ export default class Playlist extends React.Component {
 		if (playlists && !isFetching){
 			return (
 				<View style={Styles.playlistContainer}>
-					<PlaylistsResultWithCheckAndSpinner results={this.props.playlists.playlists} message={'No playlists'} {...this.props} userId={this.props.match.params.userId}/>
+					<PlaylistsWithResultsAndSpinner results={this.props.playlists.playlists} message={'No playlists'} {...this.props} userId={this.props.match.params.userId}/>
 				</View>
 		    )
 		}
